@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Models
 {
-    public enum Rating
+    public enum AgeRating
     {
-       General_Audiences, Parental_Guidance_Suggested, Parents_Strongly_Cautioned,Restricted, Adults_Only
+       GeneralAudiences, ParentalGuidanceSuggested, ParentsStronglyCautioned,Restricted, AdultsOnly
     }
     [Table("movies")]
     public class Movie
@@ -27,7 +27,7 @@ namespace MRDN68_HFT_2021221.Models
         public int? Year { get; set; }
 
         [Required]
-        public Rating Rating { get; set; }
+        public AgeRating Rating { get; set; }
 
         [NotMapped]
         public virtual Director Director { get; set; }
