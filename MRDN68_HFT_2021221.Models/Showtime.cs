@@ -8,28 +8,31 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Models
 {
-    [Table("cinemas")]
-    public class Cinema
+    [Table("showtimes")]
+    public class Showtime
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [MaxLength(100)]
         [Required]
-        public string Name { get; set; }
+        public DateTime DateTime { get; set; }
 
-        [MaxLength(30)]
+        [MaxLength(40)]
         [Required]
         public string City { get; set; }
 
-        [NotMapped]
-        public virtual ICollection<Movie> Movies { get; set; }
-        // IEnumerable, ICollection, IList, IDictionary
+        [MaxLength(30)]
+        [Required]
+        public string CinemaName { get; set; }
 
-        public Cinema()
-        {
-            Movies = new HashSet<Movie>();
-        }
+        [Required]
+        public int Room { get; set; }
+
+        [NotMapped]
+        public virtual Movie Movie { get; set; }
+
+        public int MovieId { get; set; }
+
     }
 }

@@ -33,5 +33,7 @@ namespace MRDN68_HFT_2021221.Models
         public virtual Director Director { get; set; }
 
         public int DirectorId { get; set; }
+
+        public virtual ICollection<Showtime> Showtimes { get; set; }
     }
 }
