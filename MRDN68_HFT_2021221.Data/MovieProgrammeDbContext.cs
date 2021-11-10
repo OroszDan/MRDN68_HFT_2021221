@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Data
 {
-    class MovieProgrammeDbContext :DbContext
+    public class MovieProgrammeDbContext : DbContext
     {
         public virtual DbSet<Director> Directors { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
