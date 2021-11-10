@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Repository
 {
-    interface IDirectorRepository
+    public interface IDirectorRepository
     {
         // C(R)RUD
         void Create(Director director);

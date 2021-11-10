@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Repository
 {
-    interface IShowtimeRepository
+    public interface IShowtimeRepository
     {// C(R)RUD
         void Create(Showtime showtime);
         Showtime ReadOne(int id);

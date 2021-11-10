@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Repository
 {
-    class DirectorRepository
+    public class DirectorRepository
     {
+        
     }
 }
