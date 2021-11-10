@@ -12,7 +12,7 @@ namespace MRDN68_HFT_2021221.Data
     {
         public virtual DbSet<Director> Directors { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
-        public virtual DbSet<Showtime> Cinemas { get; set; }
+        public virtual DbSet<Showtime> Showtimes { get; set; }
 
         public MovieProgrammeDbContext()
         {
