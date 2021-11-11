@@ -38,18 +38,22 @@ namespace MRDN68_HFT_2021221.Repository
 
         public Showtime ReadOne(int id)
         {
-           Showtime showtime = context.Showtimes.FirstOrDefault(x => x.Id == id);
-            return showtime;
+           return context
+                .Showtimes
+                .FirstOrDefault(x => x.Id == id);
+           
         }
 
-        public void Update(Showtime showtime_new)
+        public void Update(Showtime showtime)
         {
-            Showtime showtime = ReadOne(showtime_new.Id);
+            Showtime showtime_old = ReadOne(showtime.Id);
             if (showtime != null)
             {
-                showtime.Movie = showtime_new.Movie;
-                showtime.MovieId = showtime_new.MovieId;
-                showtime.Room = showtime_new.Room;
+                showtime_old.CinemaName = showtime.CinemaName;
+                showtime_old.City = showtime.City;
+                showtime_old.DateTime = showtime.DateTime;
+                showtime_old.MovieId = showtime.MovieId;
+                showtime_old.Room = showtime.Room;
             }
            
             

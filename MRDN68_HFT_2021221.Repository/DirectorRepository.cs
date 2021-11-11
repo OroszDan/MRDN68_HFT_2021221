@@ -19,27 +19,40 @@ namespace MRDN68_HFT_2021221.Repository
 
         public void Create(Director director)
         {
-            throw new NotImplementedException();
+            context.Add(director);
+            context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Director director = context.Directors.FirstOrDefault(x => x.Id == id);
+            context.Remove(director);
+            context.SaveChanges();
         }
 
         public IQueryable<Director> ReadAll()
         {
-            throw new NotImplementedException();
+            return context.Directors;
         }
 
         public Director ReadOne(int id)
         {
-            throw new NotImplementedException();
+            return context
+                .Directors
+                .FirstOrDefault(x => x.Id == id);
+            
         }
 
         public void Update(Director director)
         {
-            throw new NotImplementedException();
+            Director director_old = ReadOne(director.Id);
+
+            if (director_old != null)
+            {
+                director_old.Gender = director.Gender;
+                director_old.Name = director.Name;
+                
+            }
         }
     }
 }
