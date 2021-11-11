@@ -10,7 +10,7 @@ namespace MRDN68_HFT_2021221.Repository
     public interface IShowtimeRepository
     {// C(R)RUD
         void Create(Showtime showtime);
-        Showtime ReadOne(int id);
+        Showtime Read(int id);
         IQueryable<Showtime> ReadAll(); // altalaban: query
         void Update(Showtime showtime);
         void Delete(int id);

@@ -11,7 +11,7 @@ namespace MRDN68_HFT_2021221.Repository
     {
         // C(R)RUD
         void Create(Movie movie);
-        Movie ReadOne(int id);
+        Movie Read(int id);
         IQueryable<Movie> ReadAll(); // altalaban: query
         void Update(Movie movie);
         void Delete(int id);

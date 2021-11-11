@@ -25,8 +25,8 @@ namespace MRDN68_HFT_2021221.Repository
 
         public void Delete(int id)
         {
-            Showtime showtime = context.Showtimes.FirstOrDefault(x => x.Id == id);
-            context.Remove(showtime);
+            
+            context.Remove(Read(id));
             context.SaveChanges();
             
         }
@@ -36,7 +36,7 @@ namespace MRDN68_HFT_2021221.Repository
             return context.Showtimes;
         }
 
-        public Showtime ReadOne(int id)
+        public Showtime Read(int id)
         {
            return context
                 .Showtimes
@@ -46,7 +46,7 @@ namespace MRDN68_HFT_2021221.Repository
 
         public void Update(Showtime showtime)
         {
-            Showtime showtime_old = ReadOne(showtime.Id);
+            Showtime showtime_old = Read(showtime.Id);
             if (showtime != null)
             {
                 showtime_old.CinemaName = showtime.CinemaName;

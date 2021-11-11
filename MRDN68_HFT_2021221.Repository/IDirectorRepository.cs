@@ -11,7 +11,7 @@ namespace MRDN68_HFT_2021221.Repository
     {
         // C(R)RUD
         void Create(Director director);
-        Director ReadOne(int id);
+        Director Read(int id);
         IQueryable<Director> ReadAll(); // altalaban: query
         void Update(Director director);
         void Delete(int id);

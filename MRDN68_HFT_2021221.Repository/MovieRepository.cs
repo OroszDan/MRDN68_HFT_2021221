@@ -19,27 +19,37 @@ namespace MRDN68_HFT_2021221.Repository
 
         public void Create(Movie movie)
         {
-            throw new NotImplementedException();
+            context.Movies.Add(movie);
+            context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+           
+            context.Remove(Read(id));
+            context.SaveChanges();
+
         }
 
         public IQueryable<Movie> ReadAll()
         {
-            throw new NotImplementedException();
+            return context.Movies;
         }
 
-        public Movie ReadOne(int id)
+        public Movie Read(int id)
         {
-            throw new NotImplementedException();
+            return context
+                .Movies
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(Movie movie)
         {
-            throw new NotImplementedException();
+            Movie movie_old = Read(movie.Id);
+
+            movie_old.Name = movie.Name;
+            movie_old.Rating = movie.Rating;
+            movie_old.Year = movie.Year;
         }
     }
 }

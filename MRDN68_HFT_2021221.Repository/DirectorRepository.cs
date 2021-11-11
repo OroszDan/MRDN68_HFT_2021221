@@ -25,8 +25,8 @@ namespace MRDN68_HFT_2021221.Repository
 
         public void Delete(int id)
         {
-            Director director = context.Directors.FirstOrDefault(x => x.Id == id);
-            context.Remove(director);
+            
+            context.Remove(Read(id));
             context.SaveChanges();
         }
 
@@ -35,7 +35,7 @@ namespace MRDN68_HFT_2021221.Repository
             return context.Directors;
         }
 
-        public Director ReadOne(int id)
+        public Director Read(int id)
         {
             return context
                 .Directors
@@ -45,7 +45,7 @@ namespace MRDN68_HFT_2021221.Repository
 
         public void Update(Director director)
         {
-            Director director_old = ReadOne(director.Id);
+            Director director_old = Read(director.Id);
 
             if (director_old != null)
             {
