@@ -9,11 +9,6 @@ namespace MRDN68_HFT_2021221.Logic
 {
     interface IShowtimeLogic
     {
-        IQueryable<string> Query1();
-        IQueryable<string> Query2();
-        IQueryable<string> Query3();
-        IQueryable<string> Query4();
-        IQueryable<string> Query5();
 
         void Create(Showtime showtime);
         IQueryable<Showtime> ReadAll();

@@ -26,12 +26,14 @@ namespace MRDN68_HFT_2021221.Logic
                     .Where(x => x.CinemaName == str).Select(x => x.Movie.Director.Name);
                    
         }
-        public IEnumerable<bool> lekerdezes2()
+        public void lekerdezes2()
         {// vetítenek-e 2000 előtt készült filmeket
-            //var q1 = 
-                return ReadAll()
+            var q1 = 
+                 ReadAll()
                       .Select(x => x.Movie)
-                      .Select(x => x.Year < 2000);
+                      .Where(x => x.Year < 2000)
+                      .Select(x => x.Director)
+                      .Select(x => x.Name);
         }
         public void lekerdezes3()
         {// az 1-es teremben vetített előadások besorolás alapján csoportosítva
@@ -40,12 +42,15 @@ namespace MRDN68_HFT_2021221.Logic
                 
                       
         }
-        public IQueryable<string> Query4()
-        {// 12:30 után vetített filmek nevei
+        public void Query4()
+        {// 12:30 után vetített R kategóriás filmek nevei
             DateTime date = new DateTime(2004, 1, 13, 12, 30, 0);
-            return ReadAll()
+
+            var q0 = ReadAll()
                 .Where(x => (x.DateTime.Hour >= date.Hour) && (x.DateTime.Minute > date.Minute))
-                .Select(x => x.Movie.Name);
+                .Select(x => x.Movie)
+                .Where(x => x.Rating == AgeRating.Restricted)
+                .Select(x => x.Name);
 
                       
         }
@@ -58,8 +63,6 @@ namespace MRDN68_HFT_2021221.Logic
                 .Select(x => x.Movie)
                 .Where(x => x.Director.Gender == Gender.male)
                 .Max(x => x.Year);
-            //var q4_v2 = from showtimes in ReadAll()
-            //            let newestmovieyear = showtimes.
                       
         }
 
