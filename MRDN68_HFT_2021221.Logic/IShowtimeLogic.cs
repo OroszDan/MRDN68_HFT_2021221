@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Logic
 {
-    interface IShowtimeLogic
+    public interface IShowtimeLogic
     {
 
         void Create(Showtime showtime);

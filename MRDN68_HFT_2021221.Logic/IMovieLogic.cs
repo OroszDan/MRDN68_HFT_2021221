@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Logic
 {
-    interface IMovieLogic
+    public interface IMovieLogic
     {
         void Create(Movie movie);
         IQueryable<Movie> ReadAll();

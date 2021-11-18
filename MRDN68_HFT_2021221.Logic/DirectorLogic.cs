@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Logic
 {
-    class DirectorLogic : IDirectorLogic
+    public class DirectorLogic : IDirectorLogic
     {
         IDirectorRepository repo;
         public DirectorLogic(IDirectorRepository repo)
@@ -20,7 +20,7 @@ namespace MRDN68_HFT_2021221.Logic
         {
             string name = "Quentin Tarantino";
             var q0 = ReadAll()
-                .Where(x => x.Name == name).Select(x => x.Movies);
+                .Where(x => x.Name == name).GroupBy(x => x.Movies.Where(x => x.Year ==2000));
 
             
         }

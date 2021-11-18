@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Logic
 {
-    interface IDirectorLogic
+    public interface IDirectorLogic
     {
         void Create(Director director);
         IQueryable<Director> ReadAll();

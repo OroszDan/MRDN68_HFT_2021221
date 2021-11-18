@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Logic
 {
-    class MovieLogic : IMovieLogic
+    public class MovieLogic : IMovieLogic
     {
         IMovieRepository repo;
 
