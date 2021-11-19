@@ -27,7 +27,15 @@ namespace MRDN68_HFT_2021221.Logic
 
         public void Create(Director director)
         {
-            repo.Create(director);
+            if (director !=null)
+            {
+                repo.Create(director);
+            }
+            else
+            {
+                throw new ArgumentException("Object cannot be null");
+            }
+            
         }
 
         public void Delete(int directorId)

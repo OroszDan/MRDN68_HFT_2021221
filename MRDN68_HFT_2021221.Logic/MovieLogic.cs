@@ -32,7 +32,14 @@ namespace MRDN68_HFT_2021221.Logic
 
         public void Create(Movie movie)
         {
-            repo.Create(movie);
+            if (movie != null)
+            {
+                repo.Create(movie);
+            }
+            else
+            {
+                throw new ArgumentException("Object cannot be null");
+            }
         }
 
         public void Delete(int movieId)

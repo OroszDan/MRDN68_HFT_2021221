@@ -48,6 +48,8 @@ namespace MRDN68_HFT_2021221.Test
             }.AsQueryable());
 
             ShowtimeLogic = new ShowtimeLogic(mockShowtimes.Object);
+            MovieLogic = new MovieLogic(null);
+            DirectorLogic = new DirectorLogic(null);
         }
 
         [Test]
@@ -63,6 +65,27 @@ namespace MRDN68_HFT_2021221.Test
         {
             bool truth = ShowtimeLogic.Query2();
             Assert.That(truth == true);
+        }
+
+        [Test]
+        public void ShowtimeCreateExceptionTest()
+        {
+            Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(null));
+           
+        }
+
+        [Test]
+        public void MovieCreateExceptionTest()
+        {
+            Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(null));
+
+        }
+
+        [Test]
+        public void DirectorCreateExceptionTest()
+        {
+            Assert.Throws(typeof(ArgumentException), () => DirectorLogic.Create(null));
+
         }
 
 

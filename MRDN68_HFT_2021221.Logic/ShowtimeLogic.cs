@@ -70,7 +70,15 @@ namespace MRDN68_HFT_2021221.Logic
 
         public void Create(Showtime showtime)
         {
-            repo.Create(showtime);
+            if (showtime !=null)
+            {
+                repo.Create(showtime);
+            }
+            else
+            {
+                throw new ArgumentException("Object cannot be null");
+            }
+           
         }
 
         public void Delete(int showtimeId)
@@ -85,7 +93,9 @@ namespace MRDN68_HFT_2021221.Logic
 
         public void Update(Showtime showtime)
         {
-            repo.Update(showtime);
+          
+            repo.Update(showtime);          
+
         }
     }
 }
