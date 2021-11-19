@@ -49,7 +49,7 @@ namespace MRDN68_HFT_2021221.Repository
 
             if (director_old != null)
             {
-                director_old.Gender = director.Gender;
+                director_old.BirthYear = director.BirthYear;
                 director_old.Name = director.Name;
                 
             }

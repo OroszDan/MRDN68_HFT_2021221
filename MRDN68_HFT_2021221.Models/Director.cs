@@ -8,10 +8,6 @@ using System.Threading.Tasks;
 
 namespace MRDN68_HFT_2021221.Models
 {
-    public enum Gender
-    {
-        male,female
-    }
     [Table("directors")]
     public class Director
     {
@@ -24,7 +20,7 @@ namespace MRDN68_HFT_2021221.Models
         public string Name { get; set; }
 
         [Required]
-        public Gender Gender { get; set; }
+        public int BirthYear { get; set; }
 
         [NotMapped]
         public virtual ICollection<Movie> Movies { get; set; }
