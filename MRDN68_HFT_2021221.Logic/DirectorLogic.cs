@@ -16,24 +16,28 @@ namespace MRDN68_HFT_2021221.Logic
             this.repo = repo;
         }
 
-        public void Query()
-        {
-            string name = "Quentin Tarantino";
-            var q0 = ReadAll()
-                .Where(x => x.Name == name).GroupBy(x => x.Movies.Where(x => x.Year ==2000));
+        public IQueryable<IGrouping<int,Director>> Query1()
+        {  
+            return ReadAll()
+                .Where(x => x.Name.Contains("a"))
+                .GroupBy(x => x.Movies.Where(x => x.Year == 2000).Count());
+            //akinek van "a" betű a nevében annak a neve és a 2000 után készült
+            //filmjeinek száma csökkenő sorrendben
 
             
         }
 
         public void Create(Director director)
         {
-            if (director !=null)
+           
+            if (director != null && !String.IsNullOrEmpty(director.Name) 
+                && director.BirthYear != default)
             {
                 repo.Create(director);
             }
             else
             {
-                throw new ArgumentException("Object cannot be null");
+                throw new ArgumentException("Object is insufficient");
             }
             
         }

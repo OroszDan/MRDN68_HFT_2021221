@@ -35,5 +35,10 @@ namespace MRDN68_HFT_2021221.Models
         public int DirectorId { get; set; }
 
         public virtual ICollection<Showtime> Showtimes { get; set; }
+
+        public Movie()
+        {
+            Showtimes = new HashSet<Showtime>();
+        }
     }
 }

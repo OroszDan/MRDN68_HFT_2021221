@@ -20,12 +20,12 @@ namespace MRDN68_HFT_2021221.Test
         IDirectorLogic DirectorLogic;
 
         [SetUp]
-        public void Setup()
+        public void ShowtimeSetup()
         {
-            Director tarantino = new Director() { Name = "Quentin Tarantino" };
-            Director jackson = new Director() { Name = "Peter Jackson" };
-            Director colombus = new Director() { Name = "Chris Colombus" };
-
+            Director tarantino = new Director() { Name = "Quentin Tarantino", BirthYear = 1963 };
+            Director jackson = new Director() { Name = "Peter Jackson", BirthYear = 1961};
+            Director colombus = new Director() { Name = "Chris Colombus", BirthYear = 1958 };
+             
             Movie tarantino1 = new Movie() { Director = tarantino, Year = 1994, Name = "Pulp Fiction", Rating = AgeRating.Restricted };
             Movie tarantino2 = new Movie() { Director = tarantino, Year = 2003, Name = "Kill Bill 1.", Rating = AgeRating.Restricted };
             Movie jackson1 = new Movie() { Director = jackson, Year = 2003, Name = "Lord of the Rings: The Return of the King", Rating = AgeRating.ParentsStronglyCautioned };
@@ -34,57 +34,191 @@ namespace MRDN68_HFT_2021221.Test
             Movie colombus2 = new Movie() { Director = colombus, Year = 2004, Name = "Harry Potter and the Prisoner of Azkaban", Rating = AgeRating.ParentalGuidanceSuggested };
 
             Mock<IShowtimeRepository> mockShowtimes = new Mock<IShowtimeRepository>();
+            Mock<IMovieRepository> mockMovies = new Mock<IMovieRepository>();
+            Mock<IDirectorRepository> mockDirectors = new Mock<IDirectorRepository>();
+
+            //mockShowtimes.Setup(x => x.ReadAll())
+            //.Returns(new List<Showtime>
+            //{
+            //    new Showtime() {  Movie = tarantino1, DateTime = new DateTime(1996, 1, 13, 11, 0, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 },
+            //    new Showtime() {  Movie = tarantino1, DateTime = new DateTime(2004, 1, 13, 17, 30, 0), CinemaName = "Cinema City Allee", City = "Budapest", Room = 11 },
+            //    new Showtime() {  Movie = tarantino2, DateTime = new DateTime(2004, 2, 25, 9, 50, 0), CinemaName = "Cinema City Westend", City = "Budapest", Room = 2 },
+            //    new Showtime() {  Movie = jackson2, DateTime = new DateTime(2006, 5, 3, 18, 10, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 },
+            //    new Showtime() {  Movie = colombus1, DateTime = new DateTime(2007, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 },
+            //    new Showtime() {  Movie = colombus2, DateTime = new DateTime(2006, 12, 15, 13, 0, 0), CinemaName = "Cinema City Győr", City = "Győr", Room = 3 }
+
+            //}.AsQueryable());
+
+           
+            tarantino.Movies = new List<Movie> { tarantino1, tarantino2 };
+            jackson.Movies = new List<Movie> { jackson1, jackson2 };
+            colombus.Movies = new List<Movie> { colombus1, colombus2 };
+
+            Showtime showtime1 =
+                new Showtime() { Movie = tarantino1, DateTime = new DateTime(1996, 1, 13, 11, 0, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 };
+            Showtime showtime2 =
+                new Showtime() { Movie = tarantino1, DateTime = new DateTime(2004, 1, 13, 17, 30, 0), CinemaName = "Cinema City Allee", City = "Budapest", Room = 11 };
+            Showtime showtime3 =
+                new Showtime() { Movie = tarantino2, DateTime = new DateTime(2004, 2, 25, 9, 50, 0), CinemaName = "Cinema City Westend", City = "Budapest", Room = 2 };
+            Showtime showtime4 =
+                new Showtime() { Movie = jackson2, DateTime = new DateTime(2006, 5, 3, 18, 10, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 };
+            Showtime showtime5 =
+                new Showtime() { Movie = colombus1, DateTime = new DateTime(2007, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 };
+            Showtime showtime6 =
+                new Showtime() { Movie = colombus2, DateTime = new DateTime(2006, 12, 15, 13, 0, 0), CinemaName = "Cinema City Győr", City = "Győr", Room = 3 };
+
+            tarantino1.Showtimes = new List<Showtime> { showtime1, showtime2 };
+            tarantino2.Showtimes = new List<Showtime> { showtime3 };
+            jackson2.Showtimes = new List<Showtime> { showtime4 };
+            colombus1.Showtimes = new List<Showtime> { showtime5 };
+            colombus2.Showtimes = new List<Showtime> { showtime6 };
+
+            mockMovies.Setup(x => x.ReadAll())
+                .Returns(new List<Movie>
+                {
+                    tarantino1,tarantino2,jackson1,jackson2,colombus1,colombus2
+
+                }.AsQueryable());
+
+            mockDirectors.Setup(x => x.ReadAll())
+                .Returns(new List<Director>
+                {
+                    tarantino,jackson,colombus
+
+                }.AsQueryable());
 
             mockShowtimes.Setup(x => x.ReadAll())
-            .Returns(new List<Showtime>
-            {
-                new Showtime() {  Movie = tarantino1, DateTime = new DateTime(1996, 1, 13, 11, 0, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 },
-                new Showtime() {  Movie = tarantino2, DateTime = new DateTime(2004, 1, 13, 17, 30, 0), CinemaName = "Cinema City Allee", City = "Budapest", Room = 11 },
-                new Showtime() {  Movie = jackson1, DateTime = new DateTime(2004, 2, 25, 9, 50, 0), CinemaName = "Cinema City Westend", City = "Budapest", Room = 2 },
-                new Showtime() {  Movie = jackson2, DateTime = new DateTime(2006, 5, 3, 18, 10, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 },
-                new Showtime() {  Movie = colombus1, DateTime = new DateTime(2007, 10, 18, 9, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 },
-                new Showtime() {  Movie = colombus2, DateTime = new DateTime(2006, 12, 15, 13, 0, 0), CinemaName = "Cinema City Győr", City = "Győr", Room = 3 }
+                .Returns(new List<Showtime>
+                {
+                    showtime1,showtime2,showtime3,showtime4,showtime5,showtime6,
 
-            }.AsQueryable());
+                }.AsQueryable());
+
 
             ShowtimeLogic = new ShowtimeLogic(mockShowtimes.Object);
-            MovieLogic = new MovieLogic(null);
-            DirectorLogic = new DirectorLogic(null);
+            MovieLogic = new MovieLogic(mockMovies.Object);
+            DirectorLogic = new DirectorLogic(mockDirectors.Object);
         }
 
-        [Test]
-        public void CheckQuery4()
-        {
+        //[SetUp]
+        //public void DirectorSetup()
+        //{
+        //    Director tarantino = new Director() { Name = "Quentin Tarantino", BirthYear = 1963 };
+        //    Director jackson = new Director() { Name = "Peter Jackson", BirthYear = 1961 };
+        //    Director colombus = new Director() { Name = "Chris Colombus", BirthYear = 1958 };
 
-            int count = ShowtimeLogic.Query4().Count();
-            Assert.That(count == 1);
-        }
+        //}
+
+        //[Test]
+        //public void CheckQuery1()
+        //{
+        //    var result = DirectorLogic.Query1().ToList();
+        //    Assert.That( result.Count == 2);
+            
+        //}
 
         [Test]
         public void CheckQuery2()
         {
-            bool truth = ShowtimeLogic.Query2();
-            Assert.That(truth == true);
+            // Cinema City - ben vetített 2004 előtt készült mozik rendezői
+
+            List<string> queryresult = new List<string>
+            {
+               
+                "Peter Jackson",
+                 "Quentin Tarantino"
+            };
+
+            List<string> result = ShowtimeLogic.Query2().ToList();
+            CollectionAssert.AreEquivalent(queryresult, result);
+            //Assert.AreEqual(queryresult, result);
+
+            //Assert.That(ShowtimeLogic.Query2().Count() == 1);
+           
+        }
+
+        [Test]
+        public void CheckQuery4()
+        {// 12:00 után vetített PG kategóriás filmek nevei
+            List<string> testresult = new()
+            {
+                "Harry Potter and the Philosopher's Stone",
+                "Harry Potter and the Prisoner of Azkaban"
+            };
+
+            List<string> queryresult = ShowtimeLogic.Query4().ToList();
+            Assert.AreEqual(queryresult, testresult);
         }
 
         [Test]
         public void ShowtimeCreateExceptionTest()
         {
+            //1.
             Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(null));
-           
+            //Act1
+            Showtime testshowtime1 = new ()
+            {
+                City = "Kispest",
+                CinemaName = "",
+                Room = 0
+
+            };
+
+            //2.
+            Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(testshowtime1));
+            //Act2
+            Showtime testshowtime2 = new()
+            {
+                City = "Budapest",
+                CinemaName = "Etele Mozi",
+                Room = 0
+
+            };
+
+            //3.
+            Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(testshowtime2));
+        
         }
 
         [Test]
         public void MovieCreateExceptionTest()
-        {
+        { 
+            //1.
             Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(null));
+            //Act
+            Movie testmovie = new()
+            {
+                Name = "",
+                Year = 1492,
+                 Rating = AgeRating.AdultsOnly             
+            };
+
+            //2.
+            Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(testmovie));
 
         }
 
         [Test]
         public void DirectorCreateExceptionTest()
         {
+            //1.
             Assert.Throws(typeof(ArgumentException), () => DirectorLogic.Create(null));
+            //Act
+            Director testdirector1 = new()
+            {
+                BirthYear = 2001
+            };
+            //2.
+            Assert.Throws(typeof(ArgumentException), () => DirectorLogic.Create(testdirector1));
+            //Act
+            Director testdirector2 = new()
+            {
+                Name = "Mariska",
+                
+            };
+            //3.
+            Assert.Throws(typeof(ArgumentException), () => DirectorLogic.Create(testdirector2));
+
 
         }
 

@@ -9,6 +9,7 @@ namespace MRDN68_HFT_2021221.Logic
 {
     public interface IDirectorLogic
     {
+        IQueryable<IGrouping<int, Director>> Query1();
         void Create(Director director);
         IQueryable<Director> ReadAll();
         void Update(Director director);

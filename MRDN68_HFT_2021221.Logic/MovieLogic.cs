@@ -32,13 +32,13 @@ namespace MRDN68_HFT_2021221.Logic
 
         public void Create(Movie movie)
         {
-            if (movie != null)
+            if (movie != null && !String.IsNullOrEmpty(movie.Name))
             {
                 repo.Create(movie);
             }
             else
             {
-                throw new ArgumentException("Object cannot be null");
+                throw new ArgumentException("Object is insufficient");
             }
         }
 

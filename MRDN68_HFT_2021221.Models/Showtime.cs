@@ -19,7 +19,6 @@ namespace MRDN68_HFT_2021221.Models
         public DateTime DateTime { get; set; }
 
         [MaxLength(40)]
-        [Required]
         public string City { get; set; }
 
         [MaxLength(30)]
