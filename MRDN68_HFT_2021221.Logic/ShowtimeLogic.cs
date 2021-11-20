@@ -18,15 +18,15 @@ namespace MRDN68_HFT_2021221.Logic
         }
 
         //
-        public IQueryable<string> Query1()
-        {// ciname city arenaban vetített filmek rendezői
+        public IEnumerable<AgeRating> Query2()
+        {// ciname city arenaban vetített filmek besorolásai
             string str = "Cinema City Arena";
             /*var q0 = */
-            return ReadAll()
-                    .Where(x => x.CinemaName == str).Select(x => x.Movie.Director.Name);
-                   
+           var q0 = ReadAll()
+                    .Where(x => x.CinemaName == str /*&& x.DateTime.Hour > 17*/).Select(x => x.Movie.Rating).AsEnumerable();
+            return q0;       
         }
-        public IQueryable<string> Query2()
+        public IEnumerable<string> Query3()
         {// Cinema City - ben vetített 2004 előtt készült mozik rendezői
             return  ReadAll()
                       .Where(x => x.CinemaName.Contains("Cinema City"))
@@ -34,38 +34,57 @@ namespace MRDN68_HFT_2021221.Logic
                       .Where(x => x.Year < 2004)
                       .Select(x => x.Director.Name).Distinct();
                       
-            //return ReadAll()
-            //          .Select(x => x.Movie)
-            //          .Any(x => x.Year < 2000);
+           
         }
-        public void Query3()
-        {// az 1-es teremben vetített előadások besorolás alapján csoportosítva
-            var q2 = ReadAll()
-                .Where(x => x.Room == 1).GroupBy(x => x.Movie.Rating);
+        //public void Query3()
+        //{// az 1-es teremben vetített előadások besorolás alapján csoportosítva
+        //    var q2 = ReadAll()
+        //        .Where(x => x.Room == 1).GroupBy(x => x.Movie.Rating);
                 
                       
-        }
-        public IQueryable<string> Query4()
-        {// 12:00 után vetített PG kategóriás filmek nevei
-            DateTime date = new DateTime(2004, 4, 13, 12, 0, 0);
+        //}
+        public IEnumerable<string> Query4()
+        {// 12:30 után vetített PG kategóriás filmek nevei
             var q0 = ReadAll()
-                .Where(x => (x.DateTime.Hour >= date.Hour) /*&& (x.DateTime.Minute > date.Minute)*/)
+                .Where(x => (x.DateTime.Hour > 12 || (x.DateTime.Hour == 12 && x.DateTime.Minute > 30)) )
                 .Select(x => x.Movie)
                 .Where(x => x.Rating == AgeRating.ParentalGuidanceSuggested)
                 .Select(x => x.Name);
             
             return q0;          
         }
-        public void Query5()
-        {// budapesten vetített, legújabb, 1960 után született rendező által rendezett film évszáma
+        public IEnumerable<DateTime> Query5()
+        {// budapesten vetített, az egyik legrégebbi, 1960 után született rendező által rendezett film vetítéseinek ideje
             string city = "Budapest";
 
-            var q4 = ReadAll()
+            var result = ReadAll()
                 .Where(x => x.City == city)
                 .Select(x => x.Movie)
-                .Where(x => x.Director.BirthYear > 1960)
-                .Max(x => x.Year);
-                      
+                .Where(x => x.Director.BirthYear < 1962)
+                .GroupBy(x => x.Year)
+                .OrderBy(x => x.Key.Value)
+                .FirstOrDefault()
+                .Select(x => x.Showtimes).FirstOrDefault()
+                .Select(x => x.DateTime);
+
+            // .OrderBy(x => x.Year).FirstOrDefault();
+
+            // .Select(x => x.Showtimes.Where(x => x.City == city))
+            //.Select(x => x.Select(x => x.DateTime));
+
+
+            //var q4 = ReadAll()
+            //    .Select(x => x.Movie)
+            //    .Where(x => x.Director.BirthYear < 1960)
+            //    .Max(x => x.Year);
+
+            //var q0_res = ReadAll()
+            //    .Where(x => x.City == city)
+            //    .Select(x => x.Movie)  
+            //    .FirstOrDefault(x => x.Year == q4)
+            //    .Showtimes.Select(x => x.DateTime);
+            return result;
+                 
         }
 
         public void Create(Showtime showtime)
@@ -73,7 +92,8 @@ namespace MRDN68_HFT_2021221.Logic
            
             if (showtime !=null 
                 && !String.IsNullOrEmpty(showtime.CinemaName)
-                && showtime.DateTime != default)
+                && showtime.DateTime != default
+                && showtime.Room != default)
             {
                 repo.Create(showtime);
             }

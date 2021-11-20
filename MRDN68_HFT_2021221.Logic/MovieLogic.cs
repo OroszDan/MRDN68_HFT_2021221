@@ -30,9 +30,35 @@ namespace MRDN68_HFT_2021221.Logic
                 
         }
 
+        public void Query5()
+        {// budapesten vetített, legújabb, 1960 után született rendező által rendezett film évszáma
+            string city = "Budapest";
+
+            //var q4 = ReadAll()
+            //    .Where(x => x.Showtimes.Where(x => x.City == city))
+
+            var proba = ReadAll()
+               //.Select(x => x.Movie)
+               .GroupBy(x => x.Year).FirstOrDefault()
+               .OrderByDescending(x => x.Year)
+               .Select(x => x.Showtimes.Where(x => x.City == city))
+               .Select(x => x.Select(x => x.DateTime));
+
+            //.Where(x => x.City == city)
+            //.Select(x => x.Movie)
+            //.Where(x => x.Director.BirthYear > 1960)
+            //.Max(x => x.Year);
+
+            //var q4_2 = ReadAll()
+            //    //.Select(x => x.Movie.Year == q4)
+            //    .FirstOrDefault(x => x.Movie.Year == q4)
+            //    .
+
+        }
+
         public void Create(Movie movie)
         {
-            if (movie != null && !String.IsNullOrEmpty(movie.Name))
+            if (movie != null && !String.IsNullOrEmpty(movie.Name) && movie.Rating !=default)
             {
                 repo.Create(movie);
             }

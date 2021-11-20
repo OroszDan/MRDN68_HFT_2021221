@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using MRDN68_HFT_2021221.Repository;
-using MRDN68_HFT_2021221.Data;
 using MRDN68_HFT_2021221.Logic;
 using System;
 using System.Collections.Generic;
@@ -9,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using MRDN68_HFT_2021221.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace MRDN68_HFT_2021221.Test
 {
@@ -64,13 +65,15 @@ namespace MRDN68_HFT_2021221.Test
                 new Showtime() { Movie = jackson2, DateTime = new DateTime(2006, 5, 3, 18, 10, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 };
             Showtime showtime5 =
                 new Showtime() { Movie = colombus1, DateTime = new DateTime(2007, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 };
+            Showtime showtime7 =
+               new Showtime() { Movie = colombus1, DateTime = new DateTime(2008, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 };
             Showtime showtime6 =
                 new Showtime() { Movie = colombus2, DateTime = new DateTime(2006, 12, 15, 13, 0, 0), CinemaName = "Cinema City Győr", City = "Győr", Room = 3 };
 
             tarantino1.Showtimes = new List<Showtime> { showtime1, showtime2 };
             tarantino2.Showtimes = new List<Showtime> { showtime3 };
             jackson2.Showtimes = new List<Showtime> { showtime4 };
-            colombus1.Showtimes = new List<Showtime> { showtime5 };
+            colombus1.Showtimes = new List<Showtime> { showtime5, showtime7 };
             colombus2.Showtimes = new List<Showtime> { showtime6 };
 
             mockMovies.Setup(x => x.ReadAll())
@@ -100,25 +103,51 @@ namespace MRDN68_HFT_2021221.Test
             DirectorLogic = new DirectorLogic(mockDirectors.Object);
         }
 
-        //[SetUp]
-        //public void DirectorSetup()
-        //{
-        //    Director tarantino = new Director() { Name = "Quentin Tarantino", BirthYear = 1963 };
-        //    Director jackson = new Director() { Name = "Peter Jackson", BirthYear = 1961 };
-        //    Director colombus = new Director() { Name = "Chris Colombus", BirthYear = 1958 };
+        [Test]
+        public void CheckDirQuery1()
+        {
+            List<DirectorMovieCount> explist = new()
+            {
+                new DirectorMovieCount() { DirectorName = "Quentin Tarantino", Count = 1 },
+                new DirectorMovieCount{ DirectorName = "Peter Jackson", Count = 2 },
+                new DirectorMovieCount{ DirectorName = "Chris Colombus", Count = 2 }
+            };
+           
+            List<DirectorMovieCount> result = DirectorLogic.Query1().ToList();
+            Assert.That(result.Count == 3);
+            //Assert.That(explist.Equals(result));
 
-        //}
+          
+            for (int i = 0; i < explist.Count; i++)
+            {
+                Assert.That(explist[i].Count == result[i].Count);
+                Assert.That(explist[i].DirectorName == result[i].DirectorName);
+                
 
-        //[Test]
-        //public void CheckQuery1()
-        //{
-        //    var result = DirectorLogic.Query1().ToList();
-        //    Assert.That( result.Count == 2);
-            
-        //}
+            }
+            //CollectionAssert.AreEquivalent(explist, result);
+
+
+        }
 
         [Test]
         public void CheckQuery2()
+        {
+            // ciname city arenaban vetített filmek besorolásai
+            List<AgeRating> ageRatings = new()
+            {
+                AgeRating.Restricted,
+                AgeRating.ParentsStronglyCautioned
+            };
+
+            List<AgeRating> result = ShowtimeLogic.Query2().ToList();
+            CollectionAssert.AreEquivalent(ageRatings, result);
+            
+        }
+
+
+        [Test]
+        public void CheckQuery3()
         {
             // Cinema City - ben vetített 2004 előtt készült mozik rendezői
 
@@ -129,7 +158,7 @@ namespace MRDN68_HFT_2021221.Test
                  "Quentin Tarantino"
             };
 
-            List<string> result = ShowtimeLogic.Query2().ToList();
+            List<string> result = ShowtimeLogic.Query3().ToList();
             CollectionAssert.AreEquivalent(queryresult, result);
             //Assert.AreEqual(queryresult, result);
 
@@ -151,22 +180,37 @@ namespace MRDN68_HFT_2021221.Test
         }
 
         [Test]
+        public void CheckQuery5()
+        {
+            var result = ShowtimeLogic.Query5().ToList();
+
+            List<DateTime> expresult = new List<DateTime>
+            {
+                new DateTime(2007, 10, 18, 15, 40, 0),
+                new DateTime(2008, 10, 18, 15, 40, 0)
+            };
+
+            CollectionAssert.AreEquivalent(expresult, result);
+        }
+
+        [Test]
         public void ShowtimeCreateExceptionTest()
         {
             //1.
             Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(null));
-            //Act1
-            Showtime testshowtime1 = new ()
+            //Act
+            Showtime testshowtime1 = new()
             {
                 City = "Kispest",
                 CinemaName = "",
-                Room = 0
+                Room = 0,
+               
 
             };
 
             //2.
             Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(testshowtime1));
-            //Act2
+            //Act
             Showtime testshowtime2 = new()
             {
                 City = "Budapest",
@@ -177,7 +221,18 @@ namespace MRDN68_HFT_2021221.Test
 
             //3.
             Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(testshowtime2));
-        
+            //Act
+            Showtime testshowtime3 = new()
+            {
+                City = "Budapest",
+                CinemaName = "Etele Mozi",
+                DateTime = new DateTime(2017, 02, 2, 5, 6, 0)
+
+            };
+
+            //3.
+            Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(testshowtime3));
+
         }
 
         [Test]
@@ -186,7 +241,7 @@ namespace MRDN68_HFT_2021221.Test
             //1.
             Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(null));
             //Act
-            Movie testmovie = new()
+            Movie testmovie1 = new()
             {
                 Name = "",
                 Year = 1492,
@@ -194,7 +249,18 @@ namespace MRDN68_HFT_2021221.Test
             };
 
             //2.
-            Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(testmovie));
+            Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(testmovie1));
+
+            //Act
+            Movie testmovie2 = new()
+            {
+                Name = "jóskapista",
+                Year = 1492,
+               
+            };
+
+            //3.
+            Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(testmovie2));
 
         }
 
@@ -219,6 +285,50 @@ namespace MRDN68_HFT_2021221.Test
             //3.
             Assert.Throws(typeof(ArgumentException), () => DirectorLogic.Create(testdirector2));
 
+
+        }
+
+        //[Test]
+        //public void DirectorMaxLengthValidation()
+        //{
+        //    Director director = new()
+        //    {
+        //        Name = "asacadsdddddddddd",
+        //        BirthYear = 45677
+
+        //    };
+
+        //    PropertyInfo propinfo = director.GetType().GetProperty("Name");
+        //    var attribute = propinfo.GetCustomAttribute<MaxLengthAttribute>();
+
+        //    Assert.Throws(typeof (ValidationException),() => attribute.Validate(director.Name,"Name"));
+           
+        //}
+
+        [Test]
+        public void DirectorMoviesInstanceTest() 
+        {
+            Director director = new()
+            {
+                Name = "asacadsdddddddddd",
+                BirthYear = 45677
+
+            };
+
+            Assert.That(director.Movies != null);
+
+        }
+
+        [Test]
+        public void MoviesShowtimesInstanceTest()
+        {
+            Movie movie = new()
+            {
+                Name = "haleluja",
+                Rating = AgeRating.AdultsOnly
+            };
+
+            Assert.That(movie.Showtimes != null);
 
         }
 

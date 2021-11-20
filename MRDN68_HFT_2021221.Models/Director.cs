@@ -15,7 +15,7 @@ namespace MRDN68_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(10)]
         [Required]
         public string Name { get; set; }
 

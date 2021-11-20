@@ -9,8 +9,10 @@ namespace MRDN68_HFT_2021221.Logic
 {
     public interface IShowtimeLogic
     {
-        IQueryable<string> Query4();
-        IQueryable<string> Query2();
+        IEnumerable<DateTime> Query5();
+        IEnumerable<AgeRating> Query2();
+        IEnumerable<string> Query4();
+        IEnumerable<string> Query3();
         void Create(Showtime showtime);
         IQueryable<Showtime> ReadAll();
         void Update(Showtime showtime);
