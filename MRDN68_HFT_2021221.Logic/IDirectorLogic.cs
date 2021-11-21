@@ -9,7 +9,7 @@ namespace MRDN68_HFT_2021221.Logic
 {
     public interface IDirectorLogic
     {
-        //IGrouping<int, Director> Query1();
+       
         IEnumerable<DirectorMovieCount> Query1();
         void Create(Director director);
         IQueryable<Director> ReadAll();

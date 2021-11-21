@@ -38,18 +38,6 @@ namespace MRDN68_HFT_2021221.Test
             Mock<IMovieRepository> mockMovies = new Mock<IMovieRepository>();
             Mock<IDirectorRepository> mockDirectors = new Mock<IDirectorRepository>();
 
-            //mockShowtimes.Setup(x => x.ReadAll())
-            //.Returns(new List<Showtime>
-            //{
-            //    new Showtime() {  Movie = tarantino1, DateTime = new DateTime(1996, 1, 13, 11, 0, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 },
-            //    new Showtime() {  Movie = tarantino1, DateTime = new DateTime(2004, 1, 13, 17, 30, 0), CinemaName = "Cinema City Allee", City = "Budapest", Room = 11 },
-            //    new Showtime() {  Movie = tarantino2, DateTime = new DateTime(2004, 2, 25, 9, 50, 0), CinemaName = "Cinema City Westend", City = "Budapest", Room = 2 },
-            //    new Showtime() {  Movie = jackson2, DateTime = new DateTime(2006, 5, 3, 18, 10, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 },
-            //    new Showtime() {  Movie = colombus1, DateTime = new DateTime(2007, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 },
-            //    new Showtime() {  Movie = colombus2, DateTime = new DateTime(2006, 12, 15, 13, 0, 0), CinemaName = "Cinema City Győr", City = "Győr", Room = 3 }
-
-            //}.AsQueryable());
-
            
             tarantino.Movies = new List<Movie> { tarantino1, tarantino2 };
             jackson.Movies = new List<Movie> { jackson1, jackson2 };
@@ -125,7 +113,7 @@ namespace MRDN68_HFT_2021221.Test
                 
 
             }
-            //CollectionAssert.AreEquivalent(explist, result);
+          
 
 
         }
@@ -160,9 +148,9 @@ namespace MRDN68_HFT_2021221.Test
 
             List<string> result = ShowtimeLogic.Query3().ToList();
             CollectionAssert.AreEquivalent(queryresult, result);
-            //Assert.AreEqual(queryresult, result);
+            
 
-            //Assert.That(ShowtimeLogic.Query2().Count() == 1);
+           
            
         }
 
@@ -288,22 +276,7 @@ namespace MRDN68_HFT_2021221.Test
 
         }
 
-        //[Test]
-        //public void DirectorMaxLengthValidation()
-        //{
-        //    Director director = new()
-        //    {
-        //        Name = "asacadsdddddddddd",
-        //        BirthYear = 45677
-
-        //    };
-
-        //    PropertyInfo propinfo = director.GetType().GetProperty("Name");
-        //    var attribute = propinfo.GetCustomAttribute<MaxLengthAttribute>();
-
-        //    Assert.Throws(typeof (ValidationException),() => attribute.Validate(director.Name,"Name"));
-           
-        //}
+       
 
         [Test]
         public void DirectorMoviesInstanceTest() 

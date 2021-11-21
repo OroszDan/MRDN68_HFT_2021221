@@ -36,11 +36,7 @@ namespace MRDN68_HFT_2021221.Logic
                       
            
         }
-        //public void Query3()
-        //{// az 1-es teremben vetített előadások besorolás alapján csoportosítva
-        //    var q2 = ReadAll()
-        //        .Where(x => x.Room == 1).GroupBy(x => x.Movie.Rating);
-                
+       
                       
         //}
         public IEnumerable<string> Query4()
@@ -67,22 +63,8 @@ namespace MRDN68_HFT_2021221.Logic
                 .Select(x => x.Showtimes).FirstOrDefault()
                 .Select(x => x.DateTime);
 
-            // .OrderBy(x => x.Year).FirstOrDefault();
+           
 
-            // .Select(x => x.Showtimes.Where(x => x.City == city))
-            //.Select(x => x.Select(x => x.DateTime));
-
-
-            //var q4 = ReadAll()
-            //    .Select(x => x.Movie)
-            //    .Where(x => x.Director.BirthYear < 1960)
-            //    .Max(x => x.Year);
-
-            //var q0_res = ReadAll()
-            //    .Where(x => x.City == city)
-            //    .Select(x => x.Movie)  
-            //    .FirstOrDefault(x => x.Year == q4)
-            //    .Showtimes.Select(x => x.DateTime);
             return result;
                  
         }
