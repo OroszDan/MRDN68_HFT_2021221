@@ -53,15 +53,15 @@ namespace MRDN68_HFT_2021221.Test
                 new Showtime() { Movie = jackson2, DateTime = new DateTime(2006, 5, 3, 18, 10, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 };
             Showtime showtime5 =
                 new Showtime() { Movie = colombus1, DateTime = new DateTime(2007, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 };
-            Showtime showtime7 =
-               new Showtime() { Movie = colombus1, DateTime = new DateTime(2008, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 };
+            //Showtime showtime7 =
+            //   new Showtime() { Movie = colombus1, DateTime = new DateTime(2008, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 };
             Showtime showtime6 =
                 new Showtime() { Movie = colombus2, DateTime = new DateTime(2006, 12, 15, 13, 0, 0), CinemaName = "Cinema City Győr", City = "Győr", Room = 3 };
 
             tarantino1.Showtimes = new List<Showtime> { showtime1, showtime2 };
             tarantino2.Showtimes = new List<Showtime> { showtime3 };
             jackson2.Showtimes = new List<Showtime> { showtime4 };
-            colombus1.Showtimes = new List<Showtime> { showtime5, showtime7 };
+            colombus1.Showtimes = new List<Showtime> { showtime5 };
             colombus2.Showtimes = new List<Showtime> { showtime6 };
 
             mockMovies.Setup(x => x.ReadAll())
@@ -163,11 +163,25 @@ namespace MRDN68_HFT_2021221.Test
             List<DateTime> expresult = new List<DateTime>
             {
                 new DateTime(2007, 10, 18, 15, 40, 0),
-                new DateTime(2008, 10, 18, 15, 40, 0)
+                new DateTime(2006, 5, 3, 18, 10, 0)
             };
 
             CollectionAssert.AreEquivalent(expresult, result);
         }
+
+        //[Test]
+        //public void CheckQuery5_v()
+        //{
+        //    var result = IMovieLogic.Query5();
+
+        //    List<DateTime> expresult = new List<DateTime>
+        //    {
+        //        new DateTime(2007, 10, 18, 15, 40, 0),
+        //        new DateTime(2008, 10, 18, 15, 40, 0)
+        //    };
+
+        //    CollectionAssert.AreEquivalent(expresult, result.ToList());
+        //}
 
         [Test]
         public void ShowtimeCreateExceptionTest()
