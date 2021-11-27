@@ -92,30 +92,18 @@ namespace MRDN68_HFT_2021221.Test
         }
 
         [Test]
-        public void CheckDirQuery1()
-        {
-            List<DirectorMovieCount> explist = new()
+        public void CheckQuery1()
+        {//2000 utáni filmek száma rendezőként csoportosítva, azon belül ábécé sorrendben
+            List<KeyValuePair<string, int>> expresult = new List<KeyValuePair<string, int>>()
             {
-                new DirectorMovieCount() { DirectorName = "Quentin Tarantino", Count = 1 },
-                new DirectorMovieCount{ DirectorName = "Peter Jackson", Count = 2 },
-                new DirectorMovieCount{ DirectorName = "Chris Colombus", Count = 2 }
+                new KeyValuePair<string, int> ("Chris Colombus",1),
+                new KeyValuePair<string, int> ("Peter Jackson",2),
+                new KeyValuePair<string, int> ("Quentin Tarantino",1)
             };
-           
-            List<DirectorMovieCount> result = DirectorLogic.Query1().ToList();
-            Assert.That(result.Count == 3);
-            //Assert.That(explist.Equals(result));
 
-          
-            for (int i = 0; i < explist.Count; i++)
-            {
-                Assert.That(explist[i].Count == result[i].Count);
-                Assert.That(explist[i].DirectorName == result[i].DirectorName);
-                
+            List<KeyValuePair<string, int>> result = MovieLogic.Query1().ToList();
 
-            }
-          
-
-
+           CollectionAssert.AreEqual(expresult,result);
         }
 
         [Test]
