@@ -25,7 +25,7 @@ namespace MRDN68_HFT_2021221.Data
             {
                 optionsBuilder.
                     UseLazyLoadingProxies().
-                    UseSqlServer(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename|DataDirectory|\MovieProgramme.mdf; Integrated Security = True");
+                    UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True");
             }
         }
 
@@ -38,10 +38,10 @@ namespace MRDN68_HFT_2021221.Data
 
             Movie tarantino1 = new Movie() { Id = 1, DirectorId = tarantino.Id, Year = 1994, Name = "Pulp Fiction", Rating = AgeRating.Restricted };
             Movie tarantino2 = new Movie() { Id = 2, DirectorId = tarantino.Id, Year = 2003 ,Name = "Kill Bill 1.", Rating = AgeRating.Restricted };
-            Movie jackson1 = new Movie() { Id = 3, DirectorId = jackson.Id, Year = 2003, Name = "Lord of the Rings: The Return of the King", Rating = AgeRating.ParentsStronglyCautioned };
+            Movie jackson1 = new Movie() { Id = 3, DirectorId = jackson.Id, Year = 2003, Name = "Lord of the Rings: The Return of the King", Rating = AgeRating.ParentsStronglyCautioned }; //Lord of the Rings ParentsStronglyCautioned
             Movie jackson2 = new Movie() { Id = 4, DirectorId = jackson.Id, Year = 2003, Name = "Lord of the Rings: The two Towers", Rating = AgeRating.ParentsStronglyCautioned };
-            Movie colombus1 = new Movie() { Id = 5, DirectorId = colombus.Id, Year = 2001, Name = "Harry Potter and the Philosopher's Stone", Rating = AgeRating.ParentalGuidanceSuggested };
-            Movie colombus2 = new Movie() { Id = 6, DirectorId = colombus.Id, Year = 2004, Name = "Harry Potter and the Prisoner of Azkaban" , Rating = AgeRating.ParentalGuidanceSuggested};
+            Movie colombus1 = new Movie() { Id = 5, DirectorId = colombus.Id, Year = 2001, Name = "Harry Potter and the Philosopher's Stone", Rating = AgeRating.ParentalGuidanceSuggested };//Harry Potter and the ParentalGuidanceSuggested
+            Movie colombus2 = new Movie() { Id = 6, DirectorId = colombus.Id, Year = 2004, Name = "Harry Potter and the Prisoner of Azkaban", Rating = AgeRating.ParentalGuidanceSuggested};
 
             Showtime showtime1 = new Showtime() { Id = 1, MovieId = 1, DateTime = new DateTime(1996, 1, 13, 11, 0, 0), CinemaName = "Cinema City Arena", City = "Budapest", Room = 1 };
             Showtime showtime2 = new Showtime() { Id = 2, MovieId = 1, DateTime = new DateTime(2004, 1, 13, 17, 30,0), CinemaName = "Cinema City Allee", City = "Budapest", Room = 11 };
