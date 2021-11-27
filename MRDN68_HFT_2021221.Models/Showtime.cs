@@ -18,10 +18,10 @@ namespace MRDN68_HFT_2021221.Models
         [Required]
         public DateTime DateTime { get; set; }
 
-        [MaxLength(40)]
+        [MaxLength(30)]
         public string City { get; set; }
 
-        [MaxLength(30)]
+        [MaxLength(40)]
         [Required]
         public string CinemaName { get; set; }
 
