@@ -26,8 +26,8 @@ namespace MRDN68_HFT_2021221.Logic
                    select new KeyValuePair<string, int>
                    (g.Key, g.Count());
 
-
         }
+
 
         public void Create(Movie movie)
         {

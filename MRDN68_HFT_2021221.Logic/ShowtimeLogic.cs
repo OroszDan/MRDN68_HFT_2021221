@@ -50,22 +50,15 @@ namespace MRDN68_HFT_2021221.Logic
             return q0;          
         }
         public IEnumerable<DateTime> Query5()
-        {// budapesten vetített, az egyik legrégebbi, 1960 után született rendező által rendezett film vetítéseinek ideje
+        {// budapesten vetített, 1962 után született rendező által rendezett filmek vetítéseinek ideje
             string city = "Budapest";
 
             var result = ReadAll()
                 .Where(x => x.City == city)
-                .Select(x => x.Movie)
-                .Where(x => x.Director.BirthYear < 1962)
-                .GroupBy(x => x.Year)
-                .OrderBy(x => x.Key.Value)
-                .FirstOrDefault()
-                .Select(x => x.Showtimes).FirstOrDefault()
+                .Where(x => x.Movie.Director.BirthYear < 1962)
                 .Select(x => x.DateTime);
 
-           
-
-            return result;
+            return result; 
                  
         }
 
