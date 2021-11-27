@@ -9,6 +9,7 @@ namespace MRDN68_HFT_2021221.Logic
 {
     public interface IMovieLogic
     {
+        IEnumerable<KeyValuePair<string, int>> Query1();
         void Create(Movie movie);
         IQueryable<Movie> ReadAll();
         void Update(Movie movie);

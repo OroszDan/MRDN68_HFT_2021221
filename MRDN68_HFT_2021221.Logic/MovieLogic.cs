@@ -17,6 +17,18 @@ namespace MRDN68_HFT_2021221.Logic
             this.repo = repo;
         }
 
+        public IEnumerable<KeyValuePair<string,int>> Query1()
+        {
+            //2000 utáni filmek száma rendezőként csoportosítva, azon belül ábécé sorrendben
+            return from x in ReadAll().Where(x => x.Year > 2001)
+                   group x by x.Director.Name into g
+                   orderby g.Key
+                   select new KeyValuePair<string, int>
+                   (g.Key, g.Count());
+
+
+        }
+
         public void Create(Movie movie)
         {
             if (movie != null && !String.IsNullOrEmpty(movie.Name) && movie.Rating !=default)
