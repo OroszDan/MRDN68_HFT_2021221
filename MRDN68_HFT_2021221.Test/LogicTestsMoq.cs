@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using MRDN68_HFT_2021221.Models;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection;
 
 namespace MRDN68_HFT_2021221.Test
 {
@@ -135,10 +133,7 @@ namespace MRDN68_HFT_2021221.Test
             };
 
             List<string> result = ShowtimeLogic.Query3().ToList();
-            CollectionAssert.AreEquivalent(queryresult, result);
-            
-
-           
+            CollectionAssert.AreEquivalent(queryresult, result);         
            
         }
 
@@ -168,20 +163,6 @@ namespace MRDN68_HFT_2021221.Test
 
             CollectionAssert.AreEquivalent(expresult, result);
         }
-
-        //[Test]
-        //public void CheckQuery5_v()
-        //{
-        //    var result = IMovieLogic.Query5();
-
-        //    List<DateTime> expresult = new List<DateTime>
-        //    {
-        //        new DateTime(2007, 10, 18, 15, 40, 0),
-        //        new DateTime(2008, 10, 18, 15, 40, 0)
-        //    };
-
-        //    CollectionAssert.AreEquivalent(expresult, result.ToList());
-        //}
 
         [Test]
         public void ShowtimeCreateExceptionTest()
