@@ -43,6 +43,7 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
         {
 
             logic.Update(showtime);
+            
         }
 
         [HttpDelete("{showtimeId}")] //   /showtime/{showtimeId}
