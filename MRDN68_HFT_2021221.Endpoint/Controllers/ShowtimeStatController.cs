@@ -22,9 +22,9 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
         }
 
         [HttpGet] //  GET:     showtimestat/getquery2
-        public IEnumerable<string> GetQuery2()
+        public IEnumerable<AgeRating> GetQuery2()
         {
-            return logic.Query2().Select(x => x.ToString());
+            return logic.Query2();
         }
 
         [HttpGet] //  GET:     showtimestat/getquery3

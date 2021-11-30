@@ -45,7 +45,7 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             logic.Update(movie);
         }
 
-        [HttpDelete("{showtimeId}")] //   /movie/{movieId}
+        [HttpDelete("{movieId}")] //   /movie/{movieId}
         public void DeleteOne([FromRoute] int movieId)
         {
 

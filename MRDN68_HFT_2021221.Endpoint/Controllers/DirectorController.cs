@@ -45,7 +45,7 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             logic.Update(director);
         }
 
-        [HttpDelete("{showtimeId}")] //   /director/{directorId}
+        [HttpDelete("{directorId}")] //   /director/{directorId}
         public void DeleteOne([FromRoute] int directorId)
         {
 

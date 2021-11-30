@@ -14,7 +14,7 @@ namespace MRDN68_HFT_2021221.Client
 
             //non-crud methods
             var query1 = service.Get<KeyValuePair<string, int>>("moviestat/getquery1");
-            var query2 = service.Get<string>("showtimestat/getquery2");
+            var query2 = service.Get<AgeRating>("showtimestat/getquery2");
             var query3 = service.Get<string>("showtimestat/getquery3");
             var query4 = service.Get<string>("showtimestat/getquery4");
             var query5 = service.Get<DateTime>("showtimestat/getquery5");
@@ -67,15 +67,15 @@ namespace MRDN68_HFT_2021221.Client
 
             //}, "showtime");
 
-            service.Put<Movie>(new Movie()
-            {
-                Name = "Álom.net",
-                Year = 2009,
-                Rating = AgeRating.AdultsOnly,
-                DirectorId = 1
+            //service.Put<Movie>(new Movie()
+            //{
+            //    Name = "Álom.net",
+            //    Year = 2009,
+            //    Rating = AgeRating.AdultsOnly,
+            //    DirectorId = 1
                 
                 
-            }, "movie");
+            //}, "movie");
 
             //service.Put<Director>(new Director()
             //{

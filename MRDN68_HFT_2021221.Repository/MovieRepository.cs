@@ -47,11 +47,15 @@ namespace MRDN68_HFT_2021221.Repository
         {
             Movie movie_old = Read(movie.Id);
 
-            movie_old.Name = movie.Name;
-            movie_old.Rating = movie.Rating;
-            movie_old.Year = movie.Year;
+            if (movie != null)
+            {
+                movie_old.Name = movie.Name;
+                movie_old.Rating = movie.Rating;
+                movie_old.Year = movie.Year;
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
+          
         }
     }
 }
