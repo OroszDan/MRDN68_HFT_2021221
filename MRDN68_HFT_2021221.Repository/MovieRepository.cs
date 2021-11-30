@@ -50,6 +50,8 @@ namespace MRDN68_HFT_2021221.Repository
             movie_old.Name = movie.Name;
             movie_old.Rating = movie.Rating;
             movie_old.Year = movie.Year;
+
+            context.SaveChanges();
         }
     }
 }

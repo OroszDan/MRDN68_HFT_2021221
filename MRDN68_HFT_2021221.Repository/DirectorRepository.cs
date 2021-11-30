@@ -51,8 +51,11 @@ namespace MRDN68_HFT_2021221.Repository
             {
                 director_old.BirthYear = director.BirthYear;
                 director_old.Name = director.Name;
-                
+
+                context.SaveChanges();
             }
+
+           
         }
     }
 }

@@ -54,10 +54,12 @@ namespace MRDN68_HFT_2021221.Repository
                 showtime_old.DateTime = showtime.DateTime;
                 showtime_old.MovieId = showtime.MovieId;
                 showtime_old.Room = showtime.Room;
+
+                context.SaveChanges();
+
             }
-           
-            
-          
+
+
         }
     }
 }
