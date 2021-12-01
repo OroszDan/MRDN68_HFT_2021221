@@ -169,7 +169,7 @@ namespace MRDN68_HFT_2021221.Test
         {
             //1.
             Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(null));
-            //Act
+            
             Showtime testshowtime1 = new()
             {
                 City = "Kispest",
@@ -181,7 +181,7 @@ namespace MRDN68_HFT_2021221.Test
 
             //2.
             Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(testshowtime1));
-            //Act
+          
             Showtime testshowtime2 = new()
             {
                 City = "Budapest",
@@ -192,7 +192,7 @@ namespace MRDN68_HFT_2021221.Test
 
             //3.
             Assert.Throws(typeof(ArgumentException), () => ShowtimeLogic.Create(testshowtime2));
-            //Act
+            
             Showtime testshowtime3 = new()
             {
                 City = "Budapest",
@@ -211,7 +211,7 @@ namespace MRDN68_HFT_2021221.Test
         { 
             //1.
             Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(null));
-            //Act
+          
             Movie testmovie1 = new()
             {
                 Name = "",
@@ -222,7 +222,7 @@ namespace MRDN68_HFT_2021221.Test
             //2.
             Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(testmovie1));
 
-            //Act
+          
             Movie testmovie2 = new()
             {
                 Name = "jóskapista",
@@ -240,14 +240,14 @@ namespace MRDN68_HFT_2021221.Test
         {
             //1.
             Assert.Throws(typeof(ArgumentException), () => DirectorLogic.Create(null));
-            //Act
+            
             Director testdirector1 = new()
             {
                 BirthYear = 2001
             };
             //2.
             Assert.Throws(typeof(ArgumentException), () => DirectorLogic.Create(testdirector1));
-            //Act
+            
             Director testdirector2 = new()
             {
                 Name = "Mariska",
