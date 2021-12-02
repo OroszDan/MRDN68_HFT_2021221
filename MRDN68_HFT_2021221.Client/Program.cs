@@ -69,23 +69,24 @@ namespace MRDN68_HFT_2021221.Client
 
             //service.Put<Movie>(new Movie()
             //{
+            //    Id = 2,
             //    Name = "Álom.net",
             //    Year = 2009,
             //    Rating = AgeRating.AdultsOnly,
             //    DirectorId = 1
-                
-                
+
+
             //}, "movie");
 
-            //service.Put<Director>(new Director()
-            //{
-            //    Id = 1,
-            //    Name = "Janika",
-            //    BirthYear = 2010,
-            //   
-                
+                //service.Put<Director>(new Director()
+                //{
+                //    Id = 1,
+                //    Name = "Janika",
+                //    BirthYear = 2010,
+                //   
 
-            //}, "director");
+
+                //}, "director");
 
             var showtimes = service.Get<Showtime>("showtime");
             var movies = service.Get<Movie>("movie");
