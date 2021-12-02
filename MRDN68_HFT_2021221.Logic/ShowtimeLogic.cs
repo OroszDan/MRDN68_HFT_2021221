@@ -18,28 +18,29 @@ namespace MRDN68_HFT_2021221.Logic
         }
 
         //
-        public IEnumerable<AgeRating> Query2()
+        public IEnumerable<AgeRating> MovieAgeRatingsInCinemaCityArena()
         {// ciname city arenaban vetített filmek besorolásai
             string str = "Cinema City Arena";
-            /*var q0 = */
-           var q0 = ReadAll()
-                    .Where(x => x.CinemaName == str /*&& x.DateTime.Hour > 17*/).Select(x => x.Movie.Rating).AsEnumerable();
+            
+            var q0 = ReadAll()
+                     .Where(x => x.CinemaName == str)
+                     .Select(x => x.Movie.Rating);
+                    
             return q0;       
         }
-        public IEnumerable<string> Query3()
+        public IEnumerable<string> DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas()
         {// Cinema City - ben vetített 2004 előtt készült mozik rendezői
             return  ReadAll()
                       .Where(x => x.CinemaName.Contains("Cinema City"))
                       .Select(x => x.Movie)
                       .Where(x => x.Year < 2004)
                       .Select(x => x.Director.Name).Distinct();
-                      
-           
+                
         }
        
                       
         //}
-        public IEnumerable<string> Query4()
+        public IEnumerable<string> PGCategoryMovieNamesShownAfter12_30()
         {// 12:30 után vetített PG kategóriás filmek nevei
             var q0 = ReadAll()
                 .Where(x => (x.DateTime.Hour > 12 || (x.DateTime.Hour == 12 && x.DateTime.Minute > 30)) )
@@ -49,7 +50,7 @@ namespace MRDN68_HFT_2021221.Logic
             
             return q0;          
         }
-        public IEnumerable<DateTime> Query5()
+        public IEnumerable<DateTime> DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962()
         {// budapesten vetített, 1962 után született rendező által rendezett filmek vetítéseinek ideje
             string city = "Budapest";
 

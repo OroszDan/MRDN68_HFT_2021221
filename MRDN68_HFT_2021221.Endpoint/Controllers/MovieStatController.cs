@@ -21,7 +21,7 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
         [HttpGet] //  GET:     moviestat/getquery1
         public IEnumerable<KeyValuePair<string, int>> GetQuery1()
         {
-            return logic.Query1();
+            return logic.CountOfMoviesAfter2000ByDirectorNamesAndOrderedbyDirectorNames();
         }
     }
 }

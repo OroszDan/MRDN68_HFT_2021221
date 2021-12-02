@@ -9,10 +9,10 @@ namespace MRDN68_HFT_2021221.Logic
 {
     public interface IShowtimeLogic
     {
-        IEnumerable<DateTime> Query5();
-        IEnumerable<AgeRating> Query2();
-        IEnumerable<string> Query4();
-        IEnumerable<string> Query3();
+        IEnumerable<DateTime> DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962();
+        IEnumerable<AgeRating> MovieAgeRatingsInCinemaCityArena();
+        IEnumerable<string> PGCategoryMovieNamesShownAfter12_30();
+        IEnumerable<string> DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas();
         void Create(Showtime showtime);
         IQueryable<Showtime> ReadAll();
         void Update(Showtime showtime);

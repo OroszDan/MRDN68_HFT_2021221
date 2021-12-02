@@ -24,25 +24,25 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
         [HttpGet] //  GET:     showtimestat/getquery2
         public IEnumerable<AgeRating> GetQuery2()
         {
-            return logic.Query2();
+            return logic.MovieAgeRatingsInCinemaCityArena();
         }
 
         [HttpGet] //  GET:     showtimestat/getquery3
         public IEnumerable<string> GetQuery3()
         {
-            return logic.Query3();
+            return logic.DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas();
         }
 
         [HttpGet] //  GET:     showtimestat/getquery4
         public IEnumerable<string> GetQuery4()
         {
-            return logic.Query4();
+            return logic.PGCategoryMovieNamesShownAfter12_30();
         }
 
         [HttpGet] //  GET:     showtimestat/getquery5
         public IEnumerable<DateTime> GetQuery5()
         {
-            return logic.Query5();
+            return logic.DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962();
         }
     }
 }

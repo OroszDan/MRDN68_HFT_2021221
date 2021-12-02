@@ -90,7 +90,7 @@ namespace MRDN68_HFT_2021221.Test
         }
 
         [Test]
-        public void CheckQuery1()
+        public void CheckCountOfMoviesAfter2000ByDirectorNamesAndOrderedbyDirectorNames()
         {//2000 utáni filmek száma rendezőként csoportosítva, azon belül ábécé sorrendben
             List<KeyValuePair<string, int>> expresult = new List<KeyValuePair<string, int>>()
             {
@@ -99,13 +99,13 @@ namespace MRDN68_HFT_2021221.Test
                 new KeyValuePair<string, int> ("Quentin Tarantino",1)
             };
 
-            List<KeyValuePair<string, int>> result = MovieLogic.Query1().ToList();
+            List<KeyValuePair<string, int>> result = MovieLogic.CountOfMoviesAfter2000ByDirectorNamesAndOrderedbyDirectorNames().ToList();
 
            CollectionAssert.AreEqual(expresult,result);
         }
 
         [Test]
-        public void CheckQuery2()
+        public void CheckMovieAgeRatingsInCinemaCityArena()
         {
             // ciname city arenaban vetített filmek besorolásai
             List<AgeRating> ageRatings = new()
@@ -114,14 +114,14 @@ namespace MRDN68_HFT_2021221.Test
                 AgeRating.ParentsStronglyCautioned
             };
 
-            List<AgeRating> result = ShowtimeLogic.Query2().ToList();
+            List<AgeRating> result = ShowtimeLogic.MovieAgeRatingsInCinemaCityArena().ToList();
             CollectionAssert.AreEquivalent(ageRatings, result);
             
         }
 
 
         [Test]
-        public void CheckQuery3()
+        public void CheckDirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas()
         {
             // Cinema City - ben vetített 2004 előtt készült mozik rendezői
 
@@ -132,13 +132,13 @@ namespace MRDN68_HFT_2021221.Test
                  "Quentin Tarantino"
             };
 
-            List<string> result = ShowtimeLogic.Query3().ToList();
+            List<string> result = ShowtimeLogic.DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas().ToList();
             CollectionAssert.AreEquivalent(queryresult, result);         
            
         }
 
         [Test]
-        public void CheckQuery4()
+        public void CheckPGCategoryMovieNamesShownAfter12_30()
         {// 12:00 után vetített PG kategóriás filmek nevei
             List<string> testresult = new()
             {
@@ -146,14 +146,14 @@ namespace MRDN68_HFT_2021221.Test
                 "Harry Potter and the Prisoner of Azkaban"
             };
 
-            List<string> queryresult = ShowtimeLogic.Query4().ToList();
+            List<string> queryresult = ShowtimeLogic.PGCategoryMovieNamesShownAfter12_30().ToList();
             Assert.AreEqual(queryresult, testresult);
         }
 
         [Test]
-        public void CheckQuery5()
+        public void CheckDateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962()
         {
-            var result = ShowtimeLogic.Query5().ToList();
+            var result = ShowtimeLogic.DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962().ToList();
 
             List<DateTime> expresult = new List<DateTime>
             {

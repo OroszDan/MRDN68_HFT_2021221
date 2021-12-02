@@ -17,7 +17,7 @@ namespace MRDN68_HFT_2021221.Logic
             this.repo = repo;
         }
 
-        public IEnumerable<KeyValuePair<string,int>> Query1()
+        public IEnumerable<KeyValuePair<string,int>> CountOfMoviesAfter2000ByDirectorNamesAndOrderedbyDirectorNames()
         {
             //2000 utáni filmek száma rendezőként csoportosítva, azon belül ábécé sorrendben
             return from x in ReadAll().Where(x => x.Year > 2001)
