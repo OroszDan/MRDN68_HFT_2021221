@@ -36,6 +36,11 @@ namespace MRDN68_HFT_2021221.Logic
             repo.Delete(directorId);
         }
 
+        public Director Read(int id)
+        {
+            return repo.Read(id);
+        }
+
         public IQueryable<Director> ReadAll()
         {
             return repo.ReadAll();

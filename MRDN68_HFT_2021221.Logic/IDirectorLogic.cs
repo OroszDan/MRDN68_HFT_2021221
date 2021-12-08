@@ -10,6 +10,7 @@ namespace MRDN68_HFT_2021221.Logic
     public interface IDirectorLogic
     {
         void Create(Director director);
+        Director Read(int id);
         IQueryable<Director> ReadAll();
         void Update(Director director);
         void Delete(int directorId);

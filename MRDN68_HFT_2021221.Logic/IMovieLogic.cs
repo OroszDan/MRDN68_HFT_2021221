@@ -11,6 +11,7 @@ namespace MRDN68_HFT_2021221.Logic
     {
         IEnumerable<KeyValuePair<string, int>> CountOfMoviesAfter2000ByDirectorNamesAndOrderedbyDirectorNames();
         void Create(Movie movie);
+        Movie Read(int id);
         IQueryable<Movie> ReadAll();
         void Update(Movie movie);
         void Delete(int movieId);

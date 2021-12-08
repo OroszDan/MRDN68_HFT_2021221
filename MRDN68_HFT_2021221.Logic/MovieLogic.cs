@@ -46,6 +46,11 @@ namespace MRDN68_HFT_2021221.Logic
             repo.Delete(movieId);
         }
 
+        public Movie Read(int id)
+        {
+            return repo.Read(id);
+        }
+
         public IQueryable<Movie> ReadAll()
         {
             return repo.ReadAll();

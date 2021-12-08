@@ -90,11 +90,18 @@ namespace MRDN68_HFT_2021221.Logic
             return repo.ReadAll();
         }
 
+        public Showtime Read(int id)
+        {
+            return repo.Read(id);
+        }
+
         public void Update(Showtime showtime)
         {
           
             repo.Update(showtime);          
 
         }
+
+       
     }
 }
