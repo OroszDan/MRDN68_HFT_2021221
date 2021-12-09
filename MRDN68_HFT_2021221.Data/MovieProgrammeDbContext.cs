@@ -25,7 +25,7 @@ namespace MRDN68_HFT_2021221.Data
             {
                 optionsBuilder.
                     UseLazyLoadingProxies().
-                    UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True");
+                    UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\MovieProgrammeDatabase.mdf;Integrated Security=True");
             }
         }
 
@@ -50,13 +50,13 @@ namespace MRDN68_HFT_2021221.Data
             Showtime showtime5 = new Showtime() { Id = 5, MovieId = 5, DateTime = new DateTime(2007, 10, 18, 15, 40, 0), CinemaName = "Corvin Mozi", City = "Budapest", Room = 5 };
             Showtime showtime6 = new Showtime() { Id = 6, MovieId = 6, DateTime = new DateTime(2006, 12, 15, 13, 0, 0), CinemaName = "Cinema City Győr", City = "Győr", Room = 3 };
 
-            // FLUENT API (lehetne a Brand osztalyban is -> ForeignKey attributum)
+            //FLUENT API(lehetne a Brand osztalyban is ->ForeignKey attributum)
             modelBuilder.Entity<Movie>(entity =>
             {
                 entity.HasOne(movie => movie.Director)
                       .WithMany(Director => Director.Movies)
                       .HasForeignKey(movie => movie.DirectorId)
-                      .OnDelete(DeleteBehavior.ClientSetNull);
+                      .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<Showtime>(entity =>
@@ -64,7 +64,7 @@ namespace MRDN68_HFT_2021221.Data
                 entity.HasOne(showtime => showtime.Movie)
                       .WithMany(Movie => Movie.Showtimes)
                       .HasForeignKey(showtime => showtime.MovieId)
-                      .OnDelete(DeleteBehavior.ClientSetNull);
+                      .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<Director>().HasData(tarantino, jackson, colombus);
