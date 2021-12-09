@@ -31,6 +31,12 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             return logic.ReadAll();
         }
 
+        [HttpGet("{id}")] //              /director/1
+        public Director GetOne(int id)
+        {
+            return logic.Read(id);
+        }
+
         [HttpPost] //             /director
         public void AddOne([FromBody] Director director)
         {
@@ -45,7 +51,7 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             logic.Update(director);
         }
 
-        [HttpDelete("{directorId}")] //   /director/{directorId}
+        [HttpDelete("{id}")] //   /director/{directorId}
         public void DeleteOne([FromRoute] int directorId)
         {
 

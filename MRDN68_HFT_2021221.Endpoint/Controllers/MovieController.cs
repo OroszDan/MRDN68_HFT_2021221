@@ -31,6 +31,12 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             return logic.ReadAll();
         }
 
+        [HttpGet("{id}")] //              /movie
+        public Movie GetOne(int id)
+        {
+            return logic.Read(id);
+        }
+
         [HttpPost] //             /movie
         public void AddOne([FromBody] Movie movie)
         {
@@ -45,11 +51,11 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             logic.Update(movie);
         }
 
-        [HttpDelete("{movieId}")] //   /movie/{movieId}
-        public void DeleteOne([FromRoute] int movieId)
+        [HttpDelete("{id}")] //   /movie/{id}
+        public void DeleteOne([FromRoute] int id)
         {
 
-            logic.Delete(movieId);
+            logic.Delete(id);
         }
     }
 }

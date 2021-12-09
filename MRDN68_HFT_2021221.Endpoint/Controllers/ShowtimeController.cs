@@ -31,6 +31,12 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             return logic.ReadAll();
         }
 
+        [HttpGet("{id}")] //              /showtime
+        public Showtime GetOne(int id)
+        {
+            return logic.Read(id);
+        }
+
         [HttpPost] //             /showtime
         public void AddOne([FromBody] Showtime showtime)
         {
@@ -46,11 +52,11 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             
         }
 
-        [HttpDelete("{showtimeId}")] //   /showtime/{showtimeId}
-        public void DeleteOne([FromRoute] int showtimeId)
+        [HttpDelete("{id}")] //   /showtime/{showtimeId}
+        public void DeleteOne([FromRoute] int id)
         {
 
-            logic.Delete(showtimeId);
+            logic.Delete(id);
         }
     }
 }
