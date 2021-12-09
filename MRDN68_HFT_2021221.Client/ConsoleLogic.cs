@@ -49,7 +49,7 @@ namespace MRDN68_HFT_2021221.Client
 		}
 		#endregion
 
-		#region Make
+		#region Object Makers
 		public static Director MakeDirector(bool update = false, Director old = null)
 		{
 			Director director;
@@ -113,10 +113,10 @@ namespace MRDN68_HFT_2021221.Client
 			string cinemaname = Console.ReadLine();
 			showtime.CinemaName = update ? (cinemaname != "" ? cinemaname : old.CinemaName) : cinemaname;
 
-			Console.Write("\n Delivery date: (year.month.day.hour.minute.second");
+			Console.Write("\n Delivery date (year.month.day.hour.minute.second) :");
 			string deldate = Console.ReadLine();
 			string[] ddate = deldate.Split('.');
-            showtime.DateTime = update ? (deldate != "" ? new DateTime(int.Parse(ddate[0]), int.Parse(ddate[1]), int.Parse(ddate[2])) : old.DateTime) /*: deldate == "" ? null*/ : new DateTime(int.Parse(ddate[0]), int.Parse(ddate[1]), int.Parse(ddate[2]));
+            showtime.DateTime = update ? (deldate != "" ? new DateTime(int.Parse(ddate[0]), int.Parse(ddate[1]), int.Parse(ddate[2]), int.Parse(ddate[3]), int.Parse(ddate[4]),int.Parse(ddate[5])) : old.DateTime) /*: deldate == "" ? null*/ : new DateTime(int.Parse(ddate[0]), int.Parse(ddate[1]), int.Parse(ddate[2]), int.Parse(ddate[3]), int.Parse(ddate[4]), int.Parse(ddate[5]));
 
 			Console.Write("Movie ID: ");
 			string movid = Console.ReadLine();
@@ -129,35 +129,36 @@ namespace MRDN68_HFT_2021221.Client
 
 		#region Menus
 
-		public static string DirectorThings(string action, RestService service)
+		public static void DirectorThings(string action, RestService service)
 		{
 			Console.Clear();
 			Console.WriteLine("**********************************");
-			Console.WriteLine($"            {Program.side_menu[int.Parse(action) - 1]} menu          ");
+			Console.WriteLine($"            {Program.crud_menu[int.Parse(action) - 1]} menu          ");
 			Console.WriteLine("**********************************");
 			Director dir;
 			switch (action)
 			{
 				case "1":
 					IEnumerable<Director> list = service.Get<Director>("director");
-					WriteOuts.WriteOutAll(MakeObjectArray(list, "customer"));
-					return "";
+					WriteOuts.WriteOutAll(MakeObjectArray(list, "director"));
+					break;
                 case "2":
-                    Console.WriteLine("Please write down the customer id: ");
-                    dir = service.Get<Director>(int.Parse(Console.ReadLine()), "customer");
+                    Console.WriteLine("Please write down the director id: ");
+                    dir = service.Get<Director>(int.Parse(Console.ReadLine()), "director");
                     WriteOuts.WriteOutOne(MakeDirectorReadable(dir));
-                    return "";
+					break;
                 case "3":
 					try
 					{
 						dir = MakeDirector();
 						service.Post<Director>(dir, "director");
 					}
-					catch
+					catch (Exception e)
 					{
 						Console.WriteLine("Something went wrong!");
+                        Console.WriteLine(e.Message);
 					}
-					return "";
+					break;
 				case "4":
 					Console.WriteLine("Please write down the director's id you want to change: ");
 					try
@@ -169,24 +170,25 @@ namespace MRDN68_HFT_2021221.Client
 						dir = MakeDirector(true, dir);
 						service.Put<Director>(dir, "director");
 					}
-					catch
+					catch (Exception e)
 					{
 						Console.WriteLine("Something went wrong!");
+						Console.WriteLine(e.Message);
 					}
-					return "";
+					break;
 				case "5":
 					Console.WriteLine("Please write down the director's id you want to delete: ");
 					service.Delete(int.Parse(Console.ReadLine()), "director");
-					return "";
+					break;
 				default:
-					return "";
+					break;
 			}
 		}
-		public static string MovieThings(string action, RestService service)
+		public static void MovieThings(string action, RestService service)
 		{
 			Console.Clear();
 			Console.WriteLine("**********************************");
-			Console.WriteLine($"            {Program.side_menu[int.Parse(action) - 1]} menu          ");
+			Console.WriteLine($"            {Program.crud_menu[int.Parse(action) - 1]} menu          ");
 			Console.WriteLine("**********************************");
 			Movie mov;
 			switch (action)
@@ -194,23 +196,24 @@ namespace MRDN68_HFT_2021221.Client
 				case "1":
 					IEnumerable<Movie> list = service.Get<Movie>("movie");
 					WriteOuts.WriteOutAll(MakeObjectArray(list, "movie"));
-					return "";
+					break;
                 case "2":
                     Console.WriteLine("Please write down the movie id: ");
                     mov = service.Get<Movie>(int.Parse(Console.ReadLine()), "movie");
                     WriteOuts.WriteOutOne(MakeMovieReadable(mov));
-                	return "";
+					break;
                 case "3":
 					try
 					{
 						mov = MakeMovie();
 						service.Post<Movie>(mov, "movie");
 					}
-					catch
+					catch (Exception e)
 					{
 						Console.WriteLine("Something went wrong!");
+						Console.WriteLine(e.Message);
 					}
-					return "";
+					break;
 				case "4":
 					Console.WriteLine("Please write down the movie's id you want to change: ");
 					try
@@ -221,24 +224,25 @@ namespace MRDN68_HFT_2021221.Client
 						mov = MakeMovie(true, mov);
 						service.Put<Movie>(mov, "movie");
 					}
-					catch
+					catch(Exception e)
 					{
 						Console.WriteLine("Something went wrong!");
+                        Console.WriteLine(e.Message);
 					}
-					return "";
+					break;
 				case "5":
 					Console.WriteLine("Please write down the movie's id you want to delete: ");
-					service.Delete(int.Parse(Console.ReadLine()), "product");
-					return "";
+					service.Delete(int.Parse(Console.ReadLine()), "movie");
+					break;
 				default:
-					return "";
+					break;
 			}
 		}
-		public static string ShowtimeThings(string action, RestService service)
+		public static void ShowtimeThings(string action, RestService service)
 		{
 			Console.Clear();
 			Console.WriteLine("**********************************");
-			Console.WriteLine($"            {Program.side_menu[int.Parse(action) - 1]} menu          ");
+			Console.WriteLine($"            {Program.crud_menu[int.Parse(action) - 1]} menu          ");
 			Console.WriteLine("**********************************");
 			Showtime showt;
 			switch (action)
@@ -246,23 +250,24 @@ namespace MRDN68_HFT_2021221.Client
 				case "1":
 					IEnumerable<Showtime> list = service.Get<Showtime>("showtime");
 					WriteOuts.WriteOutAll(MakeObjectArray(list, "showtime"));
-					return "";
+					break;
 				case "2":
 					Console.WriteLine("Please write down the showtime id: ");
 					showt = service.Get<Showtime>(int.Parse(Console.ReadLine()), "showtime");
 					WriteOuts.WriteOutOne(MakeShowtimeReadable(showt));
-					return "";
+					break;
 				case "3":
 					try
 					{
 						showt = MakeShowtime();
 						service.Post<Showtime>(showt, "showtime");
 					}
-					catch
+					catch(Exception e)
 					{
 						Console.WriteLine("Something went wrong!");
+                        Console.WriteLine(e.Message);
 					}
-					return "";
+					break;
 				case "4":
 					Console.WriteLine("Please write down the showtime's id you want to change: ");
 					try
@@ -273,31 +278,30 @@ namespace MRDN68_HFT_2021221.Client
 						showt = MakeShowtime(true, showt);
 						service.Put<Showtime>(showt, "showtime");
 					}
-					catch
+					catch(Exception e)
 					{
 						Console.WriteLine("Something went wrong!");
+                        Console.WriteLine(e.Message);
 					}
-					return "";
+					break;
 				case "5":
 					Console.WriteLine("Please write down the showtime's id you want to delete: ");
 					service.Delete(int.Parse(Console.ReadLine()), "showtime");
-					return "";
+					break;
 				default:
-					return "";
+					break;
 			}
 		}
 		
-		public static string QueryThings(string action, RestService service)
+		public static void QueryThings(string action, RestService service)
 		{
 			Console.Clear();
 			Console.WriteLine("************************************************");
             Console.WriteLine($"			Results");
-			//Console.WriteLine($"            {Program.side_menu[int.Parse(action) - 1]} menu          ");
 			Console.WriteLine("************************************************");
 			Console.WriteLine("(This may take some seconds to load)");
             Console.WriteLine();
 
-			//string username;
 			switch (action)
 			{
 				case "1":
@@ -308,37 +312,34 @@ namespace MRDN68_HFT_2021221.Client
 						ollist.Add(MakeValuePairReadable(item));
 					}
 					WriteOuts.WriteOutAll(ollist.ToArray());
-					return "";
+					break;
 				case "2":
 					
 					List<AgeRating> ratinglist = service.Get<AgeRating>("showtimestat/getquery2");
-					//WriteOuts.WriteOutAll(MakeElementArray(ratinglist, "pisc"));
-
+					
 					List<string> ratingliststring = new();
 					foreach (var item in ratinglist)
 					{
 						ratingliststring.Add(item.ToString());
 					};
 					WriteOuts.WriteOutAll(ratingliststring.ToArray());
-					return "";
+					break;
 				case "3":
 					
 					string[] stringlist1 = service.Get<string>("showtimestat/getquery3").ToArray();
-					//WriteOuts.WriteOutAll(MakeElementArray(stringlist1, "shoppingcart"));
 					WriteOuts.WriteOutAll(stringlist1);
-					return "";
+					break;
 
 				case "4":
 
 					string[] stringlist2 = service.Get<string>("showtimestat/getquery4").ToArray();
-					//WriteOuts.WriteOutAll(MakeElementArray(stringlist2, "shoppingcart"));
 					WriteOuts.WriteOutAll(stringlist2);
-					return "";
+					break;
 
 				case "5":
 
 					List<DateTime> datetimelist = service.Get<DateTime>("showtimestat/getquery5");
-					//WriteOuts.WriteOutAll(MakeElementArray(datetimelist, "shoppingcart"));
+					
 					
 					List<string> datetimeliststring = new();
                     foreach (var item in datetimelist)
@@ -346,9 +347,9 @@ namespace MRDN68_HFT_2021221.Client
 						datetimeliststring.Add(item.ToString());
                     };
 					WriteOuts.WriteOutAll(datetimeliststring.ToArray());
-					return "";
+					break;
 				default:
-					return "";
+					break;
 			}
 		}
 		#endregion
@@ -390,7 +391,7 @@ namespace MRDN68_HFT_2021221.Client
 			}
 			Console.WriteLine("********************************************");
 
-			Console.Write("Please give me the number of the query you would like to use: ");
+			Console.Write("Please give me the number of the option you would like to use: ");
 			string back = Console.ReadLine();
 			return back;
 		}

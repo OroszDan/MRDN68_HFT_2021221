@@ -7,14 +7,14 @@ namespace MRDN68_HFT_2021221.Client
     class Program
     {
         public static string[] main_menu;
-        public static string[] side_menu;
+        public static string[] crud_menu;
         public static string[] query_menu;
         static void Main(string[] args)
         {
             System.Threading.Thread.Sleep(4000);
 
             main_menu = new string[] { "Director", "Movie", "Showtime", "Query" };
-            side_menu = new string[] { "Get all in system", "Get one", "Create new one", "Update one", "Delete one" };
+            crud_menu = new string[] { "Get all in system", "Get one", "Create new one", "Update one", "Delete one" };
             query_menu = new string[] { "Count of Movies after 2000 by DirectorNames and Ordered by DirectorNames", "Movie AgeRatings in Cinema City Arena",
                 "DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas","PGCategoryMovieNamesShownAfter12_30",
                 "DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962" };
@@ -31,15 +31,15 @@ namespace MRDN68_HFT_2021221.Client
                 switch (menu)
                 {
                     case "1":
-                        ConsoleLogic.DirectorThings(WriteOuts.Menu(main_menu[int.Parse(menu)-1], side_menu), restService);
+                        ConsoleLogic.DirectorThings(WriteOuts.Menu(main_menu[int.Parse(menu)-1], crud_menu), restService);
                         Console.ReadLine();
                         continue;
                     case "2":
-                        ConsoleLogic.MovieThings(WriteOuts.Menu(main_menu[int.Parse(menu)-1], side_menu), restService);
+                        ConsoleLogic.MovieThings(WriteOuts.Menu(main_menu[int.Parse(menu)-1], crud_menu), restService);
                         Console.ReadLine();
                         continue;
                     case "3":
-                        ConsoleLogic.ShowtimeThings(WriteOuts.Menu(main_menu[int.Parse(menu)-1], side_menu), restService);
+                        ConsoleLogic.ShowtimeThings(WriteOuts.Menu(main_menu[int.Parse(menu)-1], crud_menu), restService);
                         Console.ReadLine();
                         continue;
                     
@@ -63,6 +63,8 @@ namespace MRDN68_HFT_2021221.Client
             var query3 = restService.Get<string>("showtimestat/getquery3");
             var query4 = restService.Get<string>("showtimestat/getquery4");
             var query5 = restService.Get<DateTime>("showtimestat/getquery5");
+
+            
 
             //crud methods
             //service.Post<Showtime>(new Showtime()
@@ -137,7 +139,11 @@ namespace MRDN68_HFT_2021221.Client
             var movies = restService.Get<Movie>("movie");
             var directors = restService.Get<Director>("director");
 
-            
+
+            var q = restService.Get<Movie>(2, "movie");
+            var q1 = restService.Get<Director>(1, "director");
+            ;
+
             ;
         }
     }
