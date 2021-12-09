@@ -56,16 +56,22 @@ namespace MRDN68_HFT_2021221.Client
 
 			if (update) director = old;
 			else director = new Director();
+			
+			 //if (update) {
+				//Console.Write("ID: ");
+				//string id = Console.ReadLine();
+				//director.Id = (id != "" ? int.Parse(id) : old.Id); 
+			 //};
 
 			Console.Write("Name: ");
 			string name = Console.ReadLine();
 			director.Name = update ? (name != "" ? name : old.Name) : name;
-
+            
 			Console.Write("\n BirthYear: ");
 			string birthyear = Console.ReadLine();
 			director.BirthYear = update ? (birthyear != "" ? int.Parse(birthyear) : old.BirthYear) :int.Parse( birthyear);
 
-			Console.WriteLine("Director making is done. Going back to system.");
+			Console.WriteLine("Director making is done.");
 
 			return director;
 		}
@@ -77,9 +83,16 @@ namespace MRDN68_HFT_2021221.Client
 			if (update) movie = old;
 			else movie = new Movie();
 
-			Console.Write("Director ID: ");
-			string dirid = Console.ReadLine();
-			movie.DirectorId = update ? (dirid != "" ? int.Parse(dirid) : old.DirectorId) : int.Parse(dirid);
+			//Console.Write("\n ID: ");
+			//string id = Console.ReadLine();
+			//movie.Id = update ? (id != "" ? int.Parse(id) : old.Id) : int.Parse(id);
+
+			if (update)
+			{
+				Console.Write("ID: ");
+				string id = Console.ReadLine();
+				movie.Id = (id != "" ? int.Parse(id) : old.Id);
+			};
 
 			Console.Write("\n Rating (0 = GeneralAudiences, 1 = ParentalGuidanceSuggested, 2 = ParentsStronglyCautioned, 3 = Restricted, 4 = AdultsOnly,)\n Please type in only the number: ");
 			string rating = Console.ReadLine();
@@ -93,6 +106,13 @@ namespace MRDN68_HFT_2021221.Client
 			string name = Console.ReadLine();
 			movie.Name = update ? (name != "" ? name : old.Name) : name;
 
+			Console.Write("Director ID: ");
+			string dirid = Console.ReadLine();
+			movie.DirectorId = update ? (dirid != "" ? int.Parse(dirid) : old.DirectorId) : int.Parse(dirid);
+
+			Console.WriteLine("Movie making is done.");
+
+
 			return movie;
 		}
 		public static Showtime MakeShowtime(bool update = false, Showtime old = null)
@@ -100,6 +120,14 @@ namespace MRDN68_HFT_2021221.Client
 			Showtime showtime;
 			if (update) showtime = old;
 			else showtime = new Showtime();
+
+			
+			//if (update)
+			//{
+			//	Console.Write("ID: ");
+			//	string id = Console.ReadLine();
+			//	showtime.Id = (id != "" ? int.Parse(id) : old.Id);
+			//};
 
 			Console.Write("\n City name: ");
 			string city = Console.ReadLine();
@@ -113,7 +141,8 @@ namespace MRDN68_HFT_2021221.Client
 			string cinemaname = Console.ReadLine();
 			showtime.CinemaName = update ? (cinemaname != "" ? cinemaname : old.CinemaName) : cinemaname;
 
-			Console.Write("\n Delivery date (year.month.day.hour.minute.second) :");
+			Console.Write("\n Delivery date:");
+            Console.WriteLine("(year.month.day.hour.minute.second)");
 			string deldate = Console.ReadLine();
 			string[] ddate = deldate.Split('.');
             showtime.DateTime = update ? (deldate != "" ? new DateTime(int.Parse(ddate[0]), int.Parse(ddate[1]), int.Parse(ddate[2]), int.Parse(ddate[3]), int.Parse(ddate[4]),int.Parse(ddate[5])) : old.DateTime) /*: deldate == "" ? null*/ : new DateTime(int.Parse(ddate[0]), int.Parse(ddate[1]), int.Parse(ddate[2]), int.Parse(ddate[3]), int.Parse(ddate[4]), int.Parse(ddate[5]));
@@ -121,6 +150,8 @@ namespace MRDN68_HFT_2021221.Client
 			Console.Write("Movie ID: ");
 			string movid = Console.ReadLine();
 			showtime.MovieId = update ? (movid != "" ? int.Parse(movid) : old.MovieId) : int.Parse(movid);
+
+			Console.WriteLine("Movie making is done.");
 
 			return showtime;
 
@@ -297,7 +328,7 @@ namespace MRDN68_HFT_2021221.Client
 		{
 			Console.Clear();
 			Console.WriteLine("************************************************");
-            Console.WriteLine($"			Results");
+            Console.WriteLine($"		Results");
 			Console.WriteLine("************************************************");
 			Console.WriteLine("(This may take some seconds to load)");
             Console.WriteLine();
