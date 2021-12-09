@@ -78,7 +78,7 @@ namespace MRDN68_HFT_2021221.Client
 			if (update) movie = old;
 			else movie = new Movie();
 
-			Console.Write("\n Rating (0 = GeneralAudiences, 1 = ParentalGuidanceSuggested, 2 = ParentsStronglyCautioned, 3 = Restricted, 4 = AdultsOnly,)\n Please type in only the number: ");
+			Console.Write("\n Rating:\n (0 = GeneralAudiences, 1 = ParentalGuidanceSuggested, 2 = ParentsStronglyCautioned, 3 = Restricted, 4 = AdultsOnly,)\n Please type in only the number: ");
 			string rating = Console.ReadLine();
 			movie.Rating = update ? (rating != "" ? (AgeRating)int.Parse(rating) : old.Rating) : (AgeRating)int.Parse(rating);			
 
