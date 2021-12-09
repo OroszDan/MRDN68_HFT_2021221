@@ -28,10 +28,10 @@ namespace MRDN68_HFT_2021221.Models
         [Required]
         public int Room { get; set; }
 
-        [NotMapped]
+        //[NotMapped]
         public virtual Movie Movie { get; set; }
 
-        public int MovieId { get; set; }
+        public int? MovieId { get; set; }
 
     }
 }

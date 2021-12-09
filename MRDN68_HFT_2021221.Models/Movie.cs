@@ -24,16 +24,14 @@ namespace MRDN68_HFT_2021221.Models
         [Required]
         public string Name { get; set; }
 
-        [MaxLength(4)]
         public int? Year { get; set; }
 
-        [Required]
         public AgeRating Rating { get; set; }
 
-        [NotMapped]
+        //[NotMapped]
         public virtual Director Director { get; set; }
 
-        public int DirectorId { get; set; }
+        public int? DirectorId { get; set; }
 
         [NotMapped]
         [JsonIgnore]

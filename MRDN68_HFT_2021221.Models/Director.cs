@@ -20,7 +20,7 @@ namespace MRDN68_HFT_2021221.Models
         [Required]
         public string Name { get; set; }
 
-        [MaxLength(4)]
+        
         [Required]
         public int BirthYear { get; set; }
 
