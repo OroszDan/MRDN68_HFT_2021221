@@ -51,11 +51,11 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
             logic.Update(director);
         }
 
-        [HttpDelete("{id}")] //   /director/{directorId}
-        public void DeleteOne([FromRoute] int directorId)
+        [HttpDelete("{id}")] //   /director/{id}
+        public void DeleteOne([FromRoute] int id)
         {
 
-            logic.Delete(directorId);
+            logic.Delete(id);
         }
     }
 }
