@@ -57,12 +57,7 @@ namespace MRDN68_HFT_2021221.Client
 			if (update) director = old;
 			else director = new Director();
 			
-			 //if (update) {
-				//Console.Write("ID: ");
-				//string id = Console.ReadLine();
-				//director.Id = (id != "" ? int.Parse(id) : old.Id); 
-			 //};
-
+			 
 			Console.Write("Name: ");
 			string name = Console.ReadLine();
 			director.Name = update ? (name != "" ? name : old.Name) : name;
@@ -83,10 +78,7 @@ namespace MRDN68_HFT_2021221.Client
 			if (update) movie = old;
 			else movie = new Movie();
 
-			//Console.Write("\n ID: ");
-			//string id = Console.ReadLine();
-			//movie.Id = update ? (id != "" ? int.Parse(id) : old.Id) : int.Parse(id);
-
+			
 			if (update)
 			{
 				Console.Write("ID: ");
@@ -120,14 +112,6 @@ namespace MRDN68_HFT_2021221.Client
 			Showtime showtime;
 			if (update) showtime = old;
 			else showtime = new Showtime();
-
-			
-			//if (update)
-			//{
-			//	Console.Write("ID: ");
-			//	string id = Console.ReadLine();
-			//	showtime.Id = (id != "" ? int.Parse(id) : old.Id);
-			//};
 
 			Console.Write("\n City name: ");
 			string city = Console.ReadLine();
@@ -330,7 +314,7 @@ namespace MRDN68_HFT_2021221.Client
 			Console.WriteLine("************************************************");
             Console.WriteLine($"		Results");
 			Console.WriteLine("************************************************");
-			Console.WriteLine("(This may take some seconds to load)");
+			
             Console.WriteLine();
 
 			switch (action)
@@ -384,10 +368,6 @@ namespace MRDN68_HFT_2021221.Client
 			}
 		}
 		#endregion
-
-		
-
-
 	}
 
 	public class WriteOuts
