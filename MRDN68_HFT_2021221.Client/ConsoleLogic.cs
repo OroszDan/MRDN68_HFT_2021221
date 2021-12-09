@@ -78,14 +78,6 @@ namespace MRDN68_HFT_2021221.Client
 			if (update) movie = old;
 			else movie = new Movie();
 
-			
-			if (update)
-			{
-				Console.Write("ID: ");
-				string id = Console.ReadLine();
-				movie.Id = (id != "" ? int.Parse(id) : old.Id);
-			};
-
 			Console.Write("\n Rating (0 = GeneralAudiences, 1 = ParentalGuidanceSuggested, 2 = ParentsStronglyCautioned, 3 = Restricted, 4 = AdultsOnly,)\n Please type in only the number: ");
 			string rating = Console.ReadLine();
 			movie.Rating = update ? (rating != "" ? (AgeRating)int.Parse(rating) : old.Rating) : (AgeRating)int.Parse(rating);			
@@ -135,7 +127,7 @@ namespace MRDN68_HFT_2021221.Client
 			string movid = Console.ReadLine();
 			showtime.MovieId = update ? (movid != "" ? int.Parse(movid) : old.MovieId) : int.Parse(movid);
 
-			Console.WriteLine("Movie making is done.");
+			Console.WriteLine("Showtime making is done.");
 
 			return showtime;
 
