@@ -31,7 +31,7 @@ namespace MRDN68_HFT_2021221.Logic
 
         public void Create(Movie movie)
         {
-            if (movie != null && !String.IsNullOrEmpty(movie.Name) && movie.Rating !=default)
+            if (movie != null && !String.IsNullOrEmpty(movie.Name))
             {
                 repo.Create(movie);
             }
