@@ -222,17 +222,6 @@ namespace MRDN68_HFT_2021221.Test
             //2.
             Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(testmovie1));
 
-          
-            Movie testmovie2 = new()
-            {
-                Name = "jóskapista",
-                Year = 1492,
-               
-            };
-
-            //3.
-            Assert.Throws(typeof(ArgumentException), () => MovieLogic.Create(testmovie2));
-
         }
 
         [Test]
