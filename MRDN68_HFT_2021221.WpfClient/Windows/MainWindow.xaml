@@ -19,7 +19,7 @@
             <Label Content="Name" Padding="10" Background="LightBlue"/>
             <TextBox Text="{Binding SelectedMovie.Name}" Margin="10" Padding="10"/>
             <Label Content="DirectorId" Padding="10" Background="LightBlue"/>
-            <TextBox Text="{Binding SelectedMovie.Director.Id}" Margin="10" Padding="10"/>
+            <TextBox Text="{Binding SelectedMovie.DirectorId}" Margin="10" Padding="10"/>
             <Label Content="Rating" Padding="10" Background="LightBlue"/>
             <TextBox Text="{Binding SelectedMovie.Rating}" Margin="10" Padding="10"/>
             <Label Content="Year" Padding="10" Background="LightBlue"/>
@@ -38,7 +38,7 @@
                         <StackPanel>
                             <Label Content="{Binding Id}" ContentStringFormat="Id: {0}"/>
                             <Label Content="{Binding Name}" ContentStringFormat="Name: {0}"/>
-                            <Label Content="{Binding Director.Id}" ContentStringFormat="Director's Id: {0}"/>
+                            <Label Content="{Binding DirectorId}" ContentStringFormat="Director's Id: {0}"/>
                             <Label Content="{Binding Rating}" ContentStringFormat="Rating: {0}"/>
                             <Label Content="{Binding Year}" ContentStringFormat="Year: {0}"/>
                         </StackPanel>
