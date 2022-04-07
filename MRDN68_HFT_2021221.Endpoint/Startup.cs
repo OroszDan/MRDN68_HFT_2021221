@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MRDN68_HFT_2021221.Data;
+using MRDN68_HFT_2021221.Endpoint.Services;
 using MRDN68_HFT_2021221.Logic;
 using MRDN68_HFT_2021221.Repository;
 using System;
@@ -38,6 +39,8 @@ namespace MRDN68_HFT_2021221.Endpoint
 
             services.AddTransient<MovieProgrammeDbContext, MovieProgrammeDbContext>();
 
+            services.AddSignalR();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieDbApp.Endpoint", Version = "v1" });
@@ -63,6 +66,7 @@ namespace MRDN68_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using MRDN68_HFT_2021221.Logic;
 using MRDN68_HFT_2021221.Models;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.SignalR;
+using MRDN68_HFT_2021221.Endpoint.Services;
 
 namespace MRDN68_HFT_2021221.Endpoint.Controllers
 {
@@ -12,9 +14,12 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
     {
         private IMovieLogic logic;
 
-        public MovieController(IMovieLogic logic)
+        private IHubContext<SignalRHub> hub;
+
+        public MovieController(IMovieLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet("test")] //      /movie/test
@@ -42,6 +47,7 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
         {
 
             logic.Create(movie);
+            this.hub.Clients.All.SendAsync("MovieCreated",movie);
         }
 
         [HttpPut] //              /movie
@@ -49,13 +55,17 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
         {
 
             logic.Update(movie);
+            this.hub.Clients.All.SendAsync("MovieUpdated", movie);
+
         }
 
         [HttpDelete("{id}")] //   /movie/{id}
         public void DeleteOne([FromRoute] int id)
         {
-
+            var movieToDelete = logic.Read(id);
             logic.Delete(id);
+            this.hub.Clients.All.SendAsync("MovieDeleted", movieToDelete);
+
         }
     }
 }
