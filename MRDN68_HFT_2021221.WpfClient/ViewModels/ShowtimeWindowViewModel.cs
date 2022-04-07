@@ -10,35 +10,35 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MRDN68_HFT_2021221.WpfClient
+namespace MRDN68_HFT_2021221.WpfClient.ViewModels
 {
-    class MainWindowWiewModel : ObservableRecipient
+    class ShowtimeWindowViewModel : ObservableRecipient
     {
-        public RestCollection<Movie> Movies { get; set; }
-        private Movie selectedMovie;
+        public RestCollection<Showtime> Showtimes { get; set; }
+        private Showtime selectedShowtime;
 
-        public Movie SelectedMovie
+        public Showtime SelectedShowtime
         {
-            get { return selectedMovie; }
-            set 
+            get { return selectedShowtime; }
+            set
             { //legyen inkább deepcopy
 
                 if (value != null)
                 {
-                    selectedMovie = new Movie()
+                    selectedShowtime = new Showtime()
                     {
-                        DirectorId = value.DirectorId,
-                        Name = value.Name,
-                        Rating = value.Rating,
+                        MovieId = value.MovieId,
+                        CinemaName = value.CinemaName,
+                         City = value.City,
                         Id = value.Id,
-                        Year = value.Year,
-                        Director = value.Director,
-                        Showtimes = value.Showtimes
+                         DateTime = value.DateTime,
+                         Movie = value.Movie,
+                         Room = value.Room
                     };
                     OnPropertyChanged();
                     //SetProperty(ref selectedMovie, value);
                     //(UpdateCommand as RelayCommand).NotifyCanExecuteChanged();
-                    
+
                 }
 
                 (DeleteCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -59,22 +59,24 @@ namespace MRDN68_HFT_2021221.WpfClient
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand Exit { get; set; }
-        public MainWindowWiewModel()
+        public ShowtimeWindowViewModel()
         {
-           // SelectedMovie = new Movie();
+            // SelectedMovie = new Movie();
             if (!IsInDesignMode)
             {
-                Movies = new RestCollection<Movie>("http://localhost:65512/", "movie", "hub");
+                Showtimes = new RestCollection<Showtime>("http://localhost:65512/", "showtime", "hub");
 
                 CreateCommand = new RelayCommand(
                     () =>
                     {
-                        Movies.Add(new Movie()
+                        Showtimes.Add(new Showtime()
                         {
-                            Name=SelectedMovie.Name,
-                            Rating = SelectedMovie.Rating,
-                            Year = SelectedMovie.Year,
-                            DirectorId = SelectedMovie.DirectorId
+                            CinemaName = SelectedShowtime.CinemaName,
+                            Room = SelectedShowtime.Room,
+                            City = SelectedShowtime.City,
+                            MovieId = SelectedShowtime.MovieId,
+                            DateTime = SelectedShowtime.DateTime
+                             
                         });
                     }
                     );
@@ -82,21 +84,22 @@ namespace MRDN68_HFT_2021221.WpfClient
                 DeleteCommand = new RelayCommand(
                     () =>
                     {
-                        Movies.Delete(selectedMovie.Id);
+                        Showtimes.Delete(selectedShowtime.Id);
                     },
                     () =>
-                    selectedMovie != null
+                    selectedShowtime != null
                     );
 
                 UpdateCommand = new RelayCommand(
                     () =>
                     {
-                        Movies.Update(selectedMovie); //buggy
+                        Showtimes.Update(selectedShowtime); 
                     });
 
-                SelectedMovie = new Movie();
+                SelectedShowtime = new Showtime();
             }
-            
+
         }
     }
 }
+
