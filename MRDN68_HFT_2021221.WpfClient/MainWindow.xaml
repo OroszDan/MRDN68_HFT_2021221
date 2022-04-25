@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MRDN68_HFT_2021221.WpfClient"
+        xmlns:vms="clr-namespace:MRDN68_HFT_2021221.WpfClient.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="400">
+    
     <Grid>
         <StackPanel>
             <Label Content="Load objects and data" Padding="10" Margin="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
-            <Button Content="Directors" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
+            <Button Content="Directors"  Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
             <Button Content="Movies" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
             <Button Content="Showtimes" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
             <Button Content="Queries" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
