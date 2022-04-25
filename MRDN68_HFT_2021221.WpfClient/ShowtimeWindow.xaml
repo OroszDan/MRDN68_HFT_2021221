@@ -17,13 +17,15 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <Label Content="Name" Padding="10" Background="LightBlue"/>
-            <TextBox Text="{Binding SelectedMovie.Name}" Margin="10" Padding="10"/>
+            <TextBox Text="{Binding SelectedShowtime.MovieId}" Margin="10" Padding="10"/>
+            <Label Content="Name" Padding="10" Background="LightBlue"/>
+            <TextBox Text="{Binding SelectedShowtime.CinemaName}" Margin="10" Padding="10"/>
             <Label Content="DirectorId" Padding="10" Background="LightBlue"/>
-            <TextBox Text="{Binding SelectedMovie.DirectorId}" Margin="10" Padding="10"/>
+            <TextBox Text="{Binding SelectedShowtime.City}" Margin="10" Padding="10"/>
             <Label Content="Rating" Padding="10" Background="LightBlue"/>
-            <TextBox Text="{Binding SelectedMovie.Rating}" Margin="10" Padding="10"/>
+            <TextBox Text="{Binding SelectedShowtime.DateTime}" Margin="10" Padding="10"/>
             <Label Content="Year" Padding="10" Background="LightBlue"/>
-            <TextBox Text="{Binding SelectedMovie.Year}" Margin="10" Padding="10"/>
+            <TextBox Text="{Binding SelectedShowtime.Room}" Margin="10" Padding="10"/>
             <Label Content="Pick an option: " Background="LightBlue" FontSize="16" Padding="10"/>
             <Button Content="List" Command="{Binding ReadCommand}"  Padding="10" Margin="10" />
             <Button Content="Create" Command="{Binding CreateCommand}" Padding="10" Margin="10" />
@@ -31,16 +33,16 @@
             <Button Content="Update" Command="{Binding UpdateCommand}" Padding="10" Margin="10"/>
             <Button Content="Exit" Padding="10" Margin="10"/>
         </StackPanel>
-        <ListBox Grid.Column="1" ItemsSource="{Binding Movies}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedMovie}">
+        <ListBox Grid.Column="1" ItemsSource="{Binding Showtimes}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedShowtime}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="2">
                         <StackPanel>
-                            <Label Content="{Binding Id}" ContentStringFormat="Id: {0}"/>
-                            <Label Content="{Binding Name}" ContentStringFormat="Name: {0}"/>
-                            <Label Content="{Binding DirectorId}" ContentStringFormat="Director's Id: {0}"/>
-                            <Label Content="{Binding Rating}" ContentStringFormat="Rating: {0}"/>
-                            <Label Content="{Binding Year}" ContentStringFormat="Year: {0}"/>
+                            <Label Content="{Binding MovieId}" ContentStringFormat="MovieId: {0}"/>
+                            <Label Content="{Binding CinemaName}" ContentStringFormat="CinameName: {0}"/>
+                            <Label Content="{Binding City}" ContentStringFormat="City: {0}"/>
+                            <Label Content="{Binding DateTime}" ContentStringFormat="DateTime: {0}"/>
+                            <Label Content="{Binding Room}" ContentStringFormat="Room: {0}"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

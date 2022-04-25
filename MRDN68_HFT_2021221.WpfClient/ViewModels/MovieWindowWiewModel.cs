@@ -71,7 +71,7 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
                     {
                         Movies.Add(new Movie()
                         {
-                            Name=SelectedMovie.Name,
+                            Name = SelectedMovie.Name,
                             Rating = SelectedMovie.Rating,
                             Year = SelectedMovie.Year,
                             DirectorId = SelectedMovie.DirectorId

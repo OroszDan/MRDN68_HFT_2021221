@@ -11,6 +11,36 @@
         <vms:DirectorWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="Name" Padding="10" Background="LightBlue"/>
+            <TextBox Text="{Binding SelectedDirector.Name}" Margin="10" Padding="10"/>
+            <Label Content="DirectorId" Padding="10" Background="LightBlue"/>
+            <TextBox Text="{Binding SelectedDirector.BirthYear}" Margin="10" Padding="10"/>
+            <Label Content="Pick an option: " Background="LightBlue" FontSize="16" Padding="10"/>
+            <Button Content="List" Command="{Binding ReadCommand}"  Padding="10" Margin="10" />
+            <Button Content="Create" Command="{Binding CreateCommand}" Padding="10" Margin="10" />
+            <Button Content="Delete" Command="{Binding DeleteCommand}" Padding="10" Margin="10"/>
+            <Button Content="Update" Command="{Binding UpdateCommand}" Padding="10" Margin="10"/>
+            <Button Content="Exit" Padding="10" Margin="10"/>
+        </StackPanel>
+        <ListBox Grid.Column="1" ItemsSource="{Binding Directors}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedDirector}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="2">
+                        <StackPanel>
+                            <Label Content="{Binding Id}" ContentStringFormat="Id: {0}"/>
+                            <Label Content="{Binding Name}" ContentStringFormat="Name: {0}"/>
+                            <Label Content="{Binding DirectorId}" ContentStringFormat="Director's Id: {0}"/>
+                            <Label Content="{Binding Rating}" ContentStringFormat="Rating: {0}"/>
+                            <Label Content="{Binding Year}" ContentStringFormat="Year: {0}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
