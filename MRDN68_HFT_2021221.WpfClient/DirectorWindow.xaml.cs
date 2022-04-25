@@ -23,5 +23,10 @@ namespace MRDN68_HFT_2021221.WpfClient
         {
             InitializeComponent();
         }
+
+        private void ExitWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MRDN68_HFT_2021221.WpfClient"
         xmlns:vms="clr-namespace:MRDN68_HFT_2021221.WpfClient.ViewModels"
         mc:Ignorable="d"
-        Title="DirectorWindow" Height="450" Width="800">
+        Title="DirectorWindow" Height="550" Width="800">
     <Window.DataContext>
         <vms:DirectorWindowViewModel/>
     </Window.DataContext>
@@ -25,7 +25,7 @@
             <Button Content="Create" Command="{Binding CreateCommand}" Padding="10" Margin="10" />
             <Button Content="Delete" Command="{Binding DeleteCommand}" Padding="10" Margin="10"/>
             <Button Content="Update" Command="{Binding UpdateCommand}" Padding="10" Margin="10"/>
-            <Button Content="Exit" Padding="10" Margin="10"/>
+            <Button Content="Exit" Padding="10" Margin="10" Click="ExitWindow_Click"/>
         </StackPanel>
         <ListBox Grid.Column="1" ItemsSource="{Binding Directors}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedDirector}">
             <ListBox.ItemTemplate>

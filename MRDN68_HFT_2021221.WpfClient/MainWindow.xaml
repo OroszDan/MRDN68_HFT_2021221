@@ -7,14 +7,18 @@
         xmlns:vms="clr-namespace:MRDN68_HFT_2021221.WpfClient.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="400">
+    <Window.DataContext>
+        <vms:MainWindowWiewModel/>
+    </Window.DataContext>
     
     <Grid>
         <StackPanel>
             <Label Content="Load objects and data" Padding="10" Margin="10" Background="LightBlue" HorizontalContentAlignment="Center"/>
-            <Button Content="Directors"  Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
-            <Button Content="Movies" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
-            <Button Content="Showtimes" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
-            <Button Content="Queries" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
+            <Button Content="Directors" Command="{Binding GetDirectorsCommand}" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
+            <Button Content="Movies" Command="{Binding GetMoviesCommand}" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
+            <Button Content="Showtimes" Command="{Binding GetShowtimesCommand}" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
+            <Button Content="Queries" Command="{Binding GetQueriesCommand}" Padding="10" Margin="10"  HorizontalContentAlignment="Center"/>
+            <Button Content="Exit" Padding="10" Margin="10"  HorizontalContentAlignment="Center" Click="ExitWindow_Button_Click"/>
         </StackPanel>
     </Grid>
 </Window>
