@@ -65,6 +65,7 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
             if (!IsInDesignMode)
             {
                 Movies = new RestCollection<Movie>("http://localhost:65512/", "movie", "hub");
+                ;
 
                 CreateCommand = new RelayCommand(
                     () =>

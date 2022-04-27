@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace MRDN68_HFT_2021221.WpfClient.ViewModels
 {
-    class MainWindowWiewModel : ObservableRecipient
+    class MainWindowWiewModel
     {
         IEditorWindowService service;
 

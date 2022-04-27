@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using MRDN68_HFT_2021221.Logic;
 using MRDN68_HFT_2021221.Models;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.SignalR;
+using MRDN68_HFT_2021221.Endpoint.Services;
 
 namespace MRDN68_HFT_2021221.Endpoint.Controllers
 {
@@ -11,10 +13,13 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
     public class DirectorController : ControllerBase
     {
         private IDirectorLogic logic;
+        private IHubContext<SignalRHub> hub;
 
-        public DirectorController(IDirectorLogic logic)
+
+        public DirectorController(IDirectorLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet("test")] //      /director/test
@@ -42,6 +47,7 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
         {
 
             logic.Create(director);
+            this.hub.Clients.All.SendAsync("DirectorCreated", director);
         }
 
         [HttpPut] //              /director
@@ -49,13 +55,16 @@ namespace MRDN68_HFT_2021221.Endpoint.Controllers
         {
 
             logic.Update(director);
+            this.hub.Clients.All.SendAsync("DirectorUpdated", director);
+
         }
 
         [HttpDelete("{id}")] //   /director/{id}
         public void DeleteOne([FromRoute] int id)
         {
-
+            var directorToDelete = logic.Read(id);
             logic.Delete(id);
+            this.hub.Clients.All.SendAsync("DirectorDeleted", directorToDelete);
         }
     }
 }
