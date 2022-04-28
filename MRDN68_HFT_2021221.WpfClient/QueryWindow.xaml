@@ -25,6 +25,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Select what you would like to know" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="Exit" Padding="20" Margin="25" Click="Button_Click" FontSize="25" FontWeight="Bold"/>
         <Label Grid.Column="0" Grid.Row="1" Content="Count of movies after 2000 by director names and ordered by director names" Padding="10" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LightCoral" BorderBrush="Coral" BorderThickness="4" />
         <ListBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Query1}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
@@ -39,23 +40,34 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Label Grid.Column="0" Grid.Row="2" Content="Movie Age Ratings In Cinema City Arena" Padding="10" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LightCyan" BorderBrush="Cyan" BorderThickness="4" />
-        <Border Grid.Column="1" Grid.Row="2" BorderBrush="Cyan" BorderThickness="2"  Margin="10">
-            <DataGrid Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Query2}" HorizontalContentAlignment="Center">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Border>
+        
+        <ListBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Query2}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Cyan" BorderThickness="2">
+                        <StackPanel>
+                            <Label Content="{Binding}"  ContentStringFormat="Rating: {0}"/>
+                            
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
                   
         <Label Grid.Column="0" Grid.Row="3" Content="Director Names Of Movies Shown Before 2004 In Cinema City Cinemas" Padding="10" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LightGoldenrodYellow" BorderBrush="Yellow" BorderThickness="4" />
-        <Border Grid.Column="1" Grid.Row="3" BorderBrush="Yellow" BorderThickness="2"  Margin="10">
-            <DataGrid Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Query3}" HorizontalContentAlignment="Center">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Border>
-       
+        
+        <ListBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Query3}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Yellow" BorderThickness="2">
+                        <StackPanel>
+                            <Label Content="{Binding}"  ContentStringFormat="Director's Name: {0}"/>
+
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Label Grid.Column="0" Grid.Row="4" Content="PG Category Movie Names Shown After 12:30" Padding="10" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LightGray" BorderBrush="Gray" BorderThickness="4" />
         <Border Grid.Column="1" Grid.Row="4" BorderBrush="Gray" BorderThickness="2" Margin="10">
             <DataGrid Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Query4}" HorizontalContentAlignment="Center">
@@ -64,15 +76,32 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
-        
+        <ListBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Query4}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Gray" BorderThickness="2">
+                        <StackPanel>
+                            <Label Content="{Binding}"  ContentStringFormat="Movie: {0}"/>
+
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
         <Label Grid.Column="0" Grid.Row="5" Content="DateTimes Of Movies Shown In Budapest Whose Directors were born Before 1962" Padding="10" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LightGreen" BorderBrush="Green" BorderThickness="4" />
-        <Border Background="LightBlue" BorderThickness="2" BorderBrush="Green" Grid.Row="5" Grid.Column="1"  Margin="10">
-            <DataGrid Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Query5}" HorizontalContentAlignment="Center">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Border>
-        
+        <ListBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Query5}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Green" BorderThickness="2">
+                        <StackPanel>
+                            <Label Content="{Binding}"  ContentStringFormat="DateTime: {0}"/>
+
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
 </Window>

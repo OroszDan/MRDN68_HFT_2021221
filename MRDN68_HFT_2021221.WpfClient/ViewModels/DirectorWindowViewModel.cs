@@ -53,7 +53,7 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
         public ICommand ReadCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        public ICommand Exit { get; set; }
+        //public ICommand ExitCommand { get; set; }
         public DirectorWindowViewModel()
         {
             // SelectedMovie = new Movie();
@@ -86,6 +86,7 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
                     {
                         Directors.Update(selectedDirector); //buggy
                     });
+                //ExitCommand = new RelayCommand(() => Application.Current.Shutdown());
 
                 SelectedDirector = new Director();
             }

@@ -58,7 +58,7 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
         public ICommand ReadCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        public ICommand Exit { get; set; }
+        public ICommand ExitCommand { get; set; }
         public ShowtimeWindowViewModel()
         {
             // SelectedMovie = new Movie();
@@ -95,6 +95,8 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
                     {
                         Showtimes.Update(selectedShowtime); 
                     });
+
+                ExitCommand = new RelayCommand(() => Application.Current.Shutdown());
 
                 SelectedShowtime = new Showtime();
             }

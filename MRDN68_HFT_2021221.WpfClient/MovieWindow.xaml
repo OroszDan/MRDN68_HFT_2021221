@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MRDN68_HFT_2021221.WpfClient"
         xmlns:vms="clr-namespace:MRDN68_HFT_2021221.WpfClient.ViewModels"
         mc:Ignorable="d"
-        Title="MovieWindow" Height="750" Width="800">
+        Title="MovieWindow" Height="750" Width="800" x:Name="window">
     <Window.DataContext>
         <vms:MovieWindowWiewModel/>
     </Window.DataContext>
@@ -25,11 +25,11 @@
             <Label Content="Year" Padding="10" Background="LightBlue"/>
             <TextBox Text="{Binding SelectedMovie.Year}" Margin="10" Padding="10"/>
             <Label Content="Pick an option: " Background="LightBlue" FontSize="16" Padding="10"/>
-            <Button Content="List" Command="{Binding ReadCommand}"  Padding="10" Margin="10" />
+           
             <Button Content="Create" Command="{Binding CreateCommand}" Padding="10" Margin="10" />
             <Button Content="Delete" Command="{Binding DeleteCommand}" Padding="10" Margin="10"/>
             <Button Content="Update" Command="{Binding UpdateCommand}" Padding="10" Margin="10"/>
-            <Button Content="Exit" Padding="10" Margin="10" Click="ExitWindow_Button_Click"/>
+            <Button Content="Exit"  Padding="10" Margin="10" Click="Button_Click" />
         </StackPanel>
         <ListBox Grid.Column="1" ItemsSource="{Binding Movies}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedMovie}">
             <ListBox.ItemTemplate>

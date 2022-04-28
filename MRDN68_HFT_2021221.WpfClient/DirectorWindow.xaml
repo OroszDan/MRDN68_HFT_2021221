@@ -21,11 +21,11 @@
             <Label Content="DirectorId" Padding="10" Background="LightBlue"/>
             <TextBox Text="{Binding SelectedDirector.BirthYear}" Margin="10" Padding="10"/>
             <Label Content="Pick an option: " Background="LightBlue" FontSize="16" Padding="10"/>
-            <Button Content="List" Command="{Binding ReadCommand}"  Padding="10" Margin="10" />
+           
             <Button Content="Create" Command="{Binding CreateCommand}" Padding="10" Margin="10" />
             <Button Content="Delete" Command="{Binding DeleteCommand}" Padding="10" Margin="10"/>
             <Button Content="Update" Command="{Binding UpdateCommand}" Padding="10" Margin="10"/>
-            <Button Content="Exit" Padding="10" Margin="10" Click="ExitWindow_Click"/>
+            <Button Content="Exit"  Padding="10" Margin="10" Click="Button_Click" />
         </StackPanel>
         <ListBox Grid.Column="1" ItemsSource="{Binding Directors}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedDirector}">
             <ListBox.ItemTemplate>
