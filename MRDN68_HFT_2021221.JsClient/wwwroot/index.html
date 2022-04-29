@@ -2,23 +2,32 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Actor UI</title>
+    <title>Director UI</title>
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <h1>Actor Catalog</h1>
+    <h1>Director Catalog</h1>
+    <div id="formdiv">
+        <label>Name</label>
+        <input type="text" id="directorname" />
+        <label>BirthYear</label>
+        <input type="number" id="directoryear" />
+        <button type="button" onclick="create()">Add Director</button>
+    </div>
+
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>BirthYear</th>
             </tr>
         </thead>
         <tbody id="resultarea">
-            <tr>
+            <!--<tr>
                 <td>101</td>
                 <td>Chris Evans</td>
-            </tr>
+            </tr>-->
         </tbody>
     </table>
     <script src="script.js"></script>
