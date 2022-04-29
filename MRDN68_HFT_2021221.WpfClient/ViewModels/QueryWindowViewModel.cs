@@ -58,9 +58,6 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
             }
         }
 
-        public ICommand ExitCommand { get; set; }
-        //public ICommand GetShowtimesCommand { get; set; }
-        //public ICommand GetQueriesCommand { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -70,30 +67,14 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
             }
         }
 
-        //public QueryWindowViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IEditorWindowService>())
-        //{
-
-        //}
+        
 
         public QueryWindowViewModel()
         {
 
             service = new RestService("http://localhost:65512/");
 
-            ExitCommand = new RelayCommand(() => Application.Current.Shutdown());
-
-            //GetQuery1 = new RelayCommand(
-            //    () => service.EditDirector()
-            //    );
-            //GetMoviesCommand = new RelayCommand(
-            //    () => service.EditMovie()
-            //    );
-            //GetShowtimesCommand = new RelayCommand(
-            //    () => service.EditShowtime()
-            //    );
-            //GetQueriesCommand = new RelayCommand(
-            //    () => service.ShowQueries()
-            //    );
+            
         }
     }
 }

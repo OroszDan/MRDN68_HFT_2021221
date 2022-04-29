@@ -50,13 +50,13 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
         }
 
         public ICommand CreateCommand { get; set; }
-        public ICommand ReadCommand { get; set; }
+       
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        //public ICommand ExitCommand { get; set; }
+        
         public DirectorWindowViewModel()
         {
-            // SelectedMovie = new Movie();
+           
             if (!IsInDesignMode)
             {
                 Directors = new RestCollection<Director>("http://localhost:65512/", "director", "hub");

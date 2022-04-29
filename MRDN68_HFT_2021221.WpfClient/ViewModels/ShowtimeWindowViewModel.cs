@@ -55,13 +55,13 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
         }
 
         public ICommand CreateCommand { get; set; }
-        public ICommand ReadCommand { get; set; }
+       
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        public ICommand ExitCommand { get; set; }
+      
         public ShowtimeWindowViewModel()
         {
-            // SelectedMovie = new Movie();
+            
             if (!IsInDesignMode)
             {
                 Showtimes = new RestCollection<Showtime>("http://localhost:65512/", "showtime", "hub");
@@ -96,7 +96,7 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
                         Showtimes.Update(selectedShowtime); 
                     });
 
-                ExitCommand = new RelayCommand(() => Application.Current.Shutdown());
+                
 
                 SelectedShowtime = new Showtime();
             }

@@ -21,7 +21,7 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
         public ICommand GetMoviesCommand { get; set; }
         public ICommand GetShowtimesCommand { get; set; }
         public ICommand GetQueriesCommand { get; set; }
-        public ICommand ExitCommand { get; set; }
+      
         public static bool IsInDesignMode
         {
             get
@@ -51,7 +51,7 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
             GetQueriesCommand = new RelayCommand(
                 () => service.ShowQueries()
                 );
-            ExitCommand = new RelayCommand(() => Application.Current.Shutdown());
+            
         }
 
         
