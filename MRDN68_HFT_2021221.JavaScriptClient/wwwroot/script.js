@@ -1,5 +1,6 @@
-﻿let director = [];
+﻿let directors = [];
 let connection = null;
+let directorIdToUpdate = -1;
 
 getdata();
 setupSignalR();
@@ -10,11 +11,15 @@ function setupSignalR() {
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("MovieCreated", (user, message) => {
+    connection.on("DirectorCreated", (user, message) => {
         getdata();
     });
 
-    connection.on("MovieDeleted", (user, message) => {
+    connection.on("DirectorDeleted", (user, message) => {
+        getdata();
+    });
+
+    connection.on("DirectorUpdated", (user, message) => {
         getdata();
     });
 
@@ -38,8 +43,8 @@ async function getdata() {
   await fetch('http://localhost:65512/director')
         .then(x => x.json())
         .then(y => {
-            director = y;
-            console.log(director);
+            directors = y;
+            console.log(directors);
             display();
         });
 }
@@ -47,13 +52,14 @@ async function getdata() {
 
 function display() {
     document.getElementById('resultarea').innerHTML = "";
-    director.forEach(t => {
+    directors.forEach(t => {
         console.log(t.name);
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>" + t.id + "</td><td>"
             + t.name + "</td><td>"
             + t.birthYear + "</td><td>" +
-                `<button type="button" onclick="remove(${t.id})">Delete</button>` + "</td></tr>";
+            `<button type="button" onclick="remove(${t.id})">Delete</button>` +
+            `<button type="button" onclick="showupdate(${t.id})">Update</button>` + "</td></tr>";
     });
 
 }
@@ -78,6 +84,26 @@ function create()
 
 }
 
+function update() {
+    document.getElementById('updateformdiv').style.display = 'none';
+    let name = document.getElementById('directornametoupdate').value;
+    let year = document.getElementById('directoryeartoupdate').value;
+    fetch('http://localhost:65512/director', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            { name: name, birthYear: year, id: directorIdToUpdate })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+
+
+}
+
 function remove(id) {
     fetch('http://localhost:65512/director/' + id, {
         method: 'DELETE',
@@ -91,5 +117,12 @@ function remove(id) {
         })
         .catch((error) => { console.error('Error:', error); });
 
+}
+
+function showupdate(id) {
+    document.getElementById('directornametoupdate').value = directors.find(t => t['id'] == id)['name'];
+    document.getElementById('directoryeartoupdate').value = directors.find(t => t['id'] == id)['birthYear'];
+    document.getElementById('updateformdiv').style.display = 'flex';
+    directorIdToUpdate = id;
 }
 
