@@ -126,3 +126,23 @@ function showupdate(id) {
     directorIdToUpdate = id;
 }
 
+function getquery1() {
+    fetch('http://localhost:65512/showtimestat/getquery3', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        //body: JSON.stringify(
+        //    { name: name, birthYear: year, id: directorIdToUpdate 
+        body: null
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+}
+
+function getqueries() {
+
+}
+
