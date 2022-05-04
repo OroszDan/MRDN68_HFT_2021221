@@ -59,6 +59,12 @@ namespace MRDN68_HFT_2021221.Endpoint
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseCors(x => x
+           .AllowCredentials()
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           .WithOrigins("http://localhost:2280"));
+
             app.UseRouting();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","MovieDbApp.Endpoint v1"));
