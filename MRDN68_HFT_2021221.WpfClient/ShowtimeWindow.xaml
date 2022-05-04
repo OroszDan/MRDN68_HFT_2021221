@@ -22,9 +22,9 @@
             <TextBox Text="{Binding SelectedShowtime.CinemaName}" Margin="10" Padding="10"/>
             <Label Content="City" Padding="10" Background="LightBlue"/>
             <TextBox Text="{Binding SelectedShowtime.City}" Margin="10" Padding="10"/>
-            <Label Content="Rating" Padding="10" Background="LightBlue"/>
-            <TextBox Text="{Binding SelectedShowtime.DateTime}" Margin="10" Padding="10"/>
             <Label Content="DateTime" Padding="10" Background="LightBlue"/>
+            <TextBox Text="{Binding SelectedShowtime.DateTime}" Margin="10" Padding="10"/>
+            <Label Content="Room" Padding="10" Background="LightBlue"/>
             <TextBox Text="{Binding SelectedShowtime.Room}" Margin="10" Padding="10"/>
             <Label Content="Pick an option: " Background="LightBlue" FontSize="16" Padding="10"/>
            
@@ -38,6 +38,7 @@
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="2">
                         <StackPanel>
+                            <Label Content="{Binding Id}" ContentStringFormat="Id: {0}"/>
                             <Label Content="{Binding MovieId}" ContentStringFormat="MovieId: {0}"/>
                             <Label Content="{Binding CinemaName}" ContentStringFormat="CinameName: {0}"/>
                             <Label Content="{Binding City}" ContentStringFormat="City: {0}"/>

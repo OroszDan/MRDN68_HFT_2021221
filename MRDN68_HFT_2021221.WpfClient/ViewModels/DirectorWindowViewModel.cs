@@ -27,8 +27,10 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
                 {
                     selectedDirector = new Director()
                     {
-                         BirthYear = value.BirthYear,
-                        Name = value.Name                     
+                        BirthYear = value.BirthYear,
+                        Name = value.Name,
+                        Id = value.Id
+                        
                     };
                     OnPropertyChanged();
                     //SetProperty(ref selectedMovie, value);

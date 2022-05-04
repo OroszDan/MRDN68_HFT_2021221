@@ -29,11 +29,11 @@ namespace MRDN68_HFT_2021221.WpfClient.ViewModels
                     {
                         MovieId = value.MovieId,
                         CinemaName = value.CinemaName,
-                         City = value.City,
+                        City = value.City,
                         Id = value.Id,
-                         DateTime = value.DateTime,
-                         Movie = value.Movie,
-                         Room = value.Room
+                        DateTime = value.DateTime,
+                        Movie = value.Movie,
+                        Room = value.Room
                     };
                     OnPropertyChanged();
                     //SetProperty(ref selectedMovie, value);
