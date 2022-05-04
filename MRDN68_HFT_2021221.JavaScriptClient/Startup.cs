@@ -28,6 +28,8 @@ namespace MRDN68_HFT_2021221.JavaScriptClient
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
