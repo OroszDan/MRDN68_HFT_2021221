@@ -1,6 +1,9 @@
 ﻿let directors = [];
 let connection = null;
 let directorIdToUpdate = -1;
+let DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas = [];
+let PGCategoryMovieNamesShownAfter12_30 = [];
+let DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962 = [];
 
 getdata();
 setupSignalR();
@@ -40,13 +43,42 @@ async function start() {
 };
 
 async function getdata() {
-  await fetch('http://localhost:65512/director')
+    await fetch('http://localhost:65512/director')
         .then(x => x.json())
         .then(y => {
             directors = y;
             console.log(directors);
             display();
         });
+
+
+    await fetch('http://localhost:65512/showtimestat/getquery3')
+        .then(x => x.json())
+        .then(y => {
+            DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas = y;
+            console.log(DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas);
+            //displayqueries();
+        });
+
+    await fetch('http://localhost:65512/showtimestat/getquery4')
+        .then(x => x.json())
+        .then(y => {
+            PGCategoryMovieNamesShownAfter12_30 = y;
+            console.log(PGCategoryMovieNamesShownAfter12_30);
+            //displayqueries();
+
+        });
+
+    await fetch('http://localhost:65512/showtimestat/getquery5')
+        .then(x => x.json())
+        .then(y => {
+            DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962 = y;
+            console.log(DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962);
+            displayqueries();
+
+        });
+    
+
 }
 
 
@@ -62,6 +94,53 @@ function display() {
             `<button type="button" onclick="showupdate(${t.id})">Update</button>` + "</td></tr>";
     });
 
+}
+
+function displayqueries() {
+    lefutottmar = false;
+    if (!lefutottmar) {
+
+        document.getElementById('queryresultarea').innerHTML = "";
+      
+
+        document.getElementById('queryresultarea').innerHTML +=
+            "<tr><th>Director Names Of Movies Shown Before 2004 In Cinema City Cinemas</th></tr>";
+
+
+        DirectorNamesOfMoviesShownBefore2004InCinemaCityCinemas.forEach(x => {
+
+            document.getElementById('queryresultarea').innerHTML +=
+                "<tr><td>" + x + "</td></tr>";
+
+        });
+
+
+        document.getElementById('queryresultarea').innerHTML +=
+            "<tr><th>PG Category Movie Names Shown After 12_30</th></tr>";
+
+        
+        PGCategoryMovieNamesShownAfter12_30.forEach(x => {
+
+            document.getElementById('queryresultarea').innerHTML +=
+                "<tr><td>" + x + "</td></tr>";
+            
+        });
+
+        document.getElementById('queryresultarea').innerHTML +=
+            "<tr><th> DateTimes Of Movies Shown In Budapest Whose Directors Were Born Before 1962</th></tr>";
+       
+       
+        DateTimesOfMoviesShownInBudapestWhoseDirectorsBornBefore1962.forEach(x => {
+           
+            document.getElementById('queryresultarea').innerHTML +=
+                "<tr><td>" + x + "</td></tr>";
+            
+        });
+
+       
+
+    }
+    lefutottmar = true;
 }
 
 function create()
@@ -124,25 +203,5 @@ function showupdate(id) {
     document.getElementById('directoryeartoupdate').value = directors.find(t => t['id'] == id)['birthYear'];
     document.getElementById('updateformdiv').style.display = 'flex';
     directorIdToUpdate = id;
-}
-
-function getquery1() {
-    fetch('http://localhost:65512/showtimestat/getquery3', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', },
-        //body: JSON.stringify(
-        //    { name: name, birthYear: year, id: directorIdToUpdate 
-        body: null
-    })
-        .then(response => response)
-        .then(data => {
-            console.log('Success:', data);
-            getdata();
-        })
-        .catch((error) => { console.error('Error:', error); });
-}
-
-function getqueries() {
-
 }
 
