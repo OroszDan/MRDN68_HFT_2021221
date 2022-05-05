@@ -6,8 +6,9 @@ table, td,tr{
     border: 1px solid black;
 }
 
-table{
+table {
     border-collapse: collapse;
+   
 }
 
 th,td{
@@ -50,5 +51,10 @@ th{
 
 table button{
     padding: 2px;
+    
 }
+
+
+
+
 
